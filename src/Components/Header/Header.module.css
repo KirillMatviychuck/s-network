@@ -1,0 +1,32 @@
+.header {
+    grid-area: h;
+    background-color: rgb(236, 221, 221);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-radius: 10px;
+}
+
+.flexContainer {
+    display: flex;
+    justify-content: center ;
+}
+
+.header img {
+    padding-right: 20px;
+    border-radius: 100px;
+    height: 60px;
+    width: 70px;
+}
+
+.login {
+    letter-spacing: 3px;
+}
+
+.login a {
+    text-decoration: none;
+    color: black;
+}
+
+.emptyDiv {
+    height: 60px;
+    width: 70px;
+}

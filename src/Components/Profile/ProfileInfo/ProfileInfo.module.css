@@ -1,0 +1,6 @@
+.mainImage img {
+     height: 150px;
+     width: 100%;
+     border-top-right-radius: 10px;
+     border-top-left-radius: 10px;
+}

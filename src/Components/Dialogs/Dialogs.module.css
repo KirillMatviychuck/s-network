@@ -1,0 +1,45 @@
+.allDialogsDesktop {
+    font-size: 1.4em;
+    color: #fff;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 2fr;
+    grid-template-areas: 'users messages'
+                         'users textArea';
+}
+
+.allDialogsUsers {
+    grid-area: users;
+    padding: 10px;
+}
+
+.allDialogsUsers a {
+    color: rgb(3, 3, 3);
+    text-decoration: none;
+}
+
+.allDialogsUsers a:link {
+    text-decoration: none;
+}
+
+.allDialogsUsers a:hover {
+    color: rgb(38, 148, 199);
+}
+
+.allDialogsDesktop {
+    padding: 5px;
+}
+
+.allMessages {
+    grid-area: messages;
+    padding: 15px;
+    color: #353e49;
+}
+
+.textAreaBlock {
+    margin-top: 20px;
+    grid-area: textArea;
+}
+.chatButton {
+    margin: 0px;
+}

@@ -1,0 +1,61 @@
+.nav {
+    grid-area: n;
+    background-color: rgb(236, 221, 221);
+    font-size: 1.4em;
+    border-radius: 10px;
+}
+
+.wrapperForNav {
+    margin-top: 10px;
+    height: 55%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.defaultClass {
+    color: black;
+}
+
+.nav a:link {
+    text-decoration: none;
+}
+
+.nav a:hover {
+    color: rgb(38, 148, 199);
+}
+
+.avatar {
+    height: 150px;
+    width: 150px;
+    border-radius: 100px;
+}
+
+.friendsBlock {
+    height: 260px;
+    width: 100%;
+}
+
+.friendsHeader {
+    padding-left: 45px;
+    color: rgb(140, 38, 199);
+}
+
+.friendsList {
+    border-radius: 10px;
+    padding-top: 30px;
+    height: 150px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+}
+.friendAvatar img{
+    height: 60px;
+    width: 60px;
+    border-radius: 100px;
+}
+
+.activeLink {
+    color: rgb(38, 148, 199);
+}
