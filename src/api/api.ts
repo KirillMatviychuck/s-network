@@ -17,7 +17,6 @@ export const usersAPI = {
 }
 
 // Follow endpoint
-
 export const followAPI = {
     unfollowUser(userId: number) {
         return instance.delete(`follow/${userId}`)

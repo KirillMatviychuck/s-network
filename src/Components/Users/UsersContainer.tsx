@@ -1,7 +1,15 @@
 import React from "react";
 import {connect} from "react-redux";
 import {AppStoreType} from "../../redux/store-redux";
-import {follow, setCurrentPage, setUsers, toggleIsFetching, unfollow, UsersType} from "../../redux/users-reducer";
+import {
+    changeToggleProgress,
+    follow,
+    setCurrentPage,
+    setUsers,
+    toggleIsFetching,
+    unfollow,
+    UsersType
+} from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {usersAPI} from "../../api/api";
 
@@ -11,6 +19,7 @@ type MapStateToPropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    toggleInProgress: Array<number>
 }
 type MapDispatchToPropsType = {
     follow: (userId: number) => void
@@ -18,6 +27,7 @@ type MapDispatchToPropsType = {
     setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (currentPage: number) => void
     toggleIsFetching: (isFetching: boolean) => void
+    changeToggleProgress: (status: boolean, userId: number) => void
 }
 export type PropsForUsersClassPageType = MapStateToPropsType & MapDispatchToPropsType
 
@@ -50,7 +60,9 @@ class UsersClass extends React.Component<PropsForUsersClassPageType, any> {
                       follow={this.props.follow}
                       unfollow={this.props.unfollow}
                       onChangeCurrentPage={this.onChangeCurrentPage}
-                      isFetching={this.props.isFetching}/>
+                      isFetching={this.props.isFetching}
+                      toggleInProgress={this.props.toggleInProgress}
+                      changeToggleProgress={this.props.changeToggleProgress}/>
     }
 }
 
@@ -60,7 +72,8 @@ const mapStateToProps = (state: AppStoreType): MapStateToPropsType => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        toggleInProgress: state.usersPage.toggleInProgress
     }
 }
 // const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
@@ -73,4 +86,4 @@ const mapStateToProps = (state: AppStoreType): MapStateToPropsType => {
 // }
 
 export const UsersContainer = connect(mapStateToProps,
-    {follow, unfollow, setUsers, setCurrentPage, toggleIsFetching})(UsersClass)
+    {follow, unfollow, setUsers, setCurrentPage, toggleIsFetching, changeToggleProgress})(UsersClass)

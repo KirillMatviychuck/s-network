@@ -41,13 +41,23 @@
     border-radius: 100px;
 }
 
-.followArea button{
+.followButton {
     color: white;
     width: 70px;
     height: 25px;
     border: 1px #353e49 solid;
     border-radius: 5px;
     background-color: #353e49;
+    letter-spacing: 1px;
+}
+
+.disabledButton {
+    color: white;
+    width: 70px;
+    height: 25px;
+    border: 1px #353e49 solid;
+    border-radius: 5px;
+    background-color: #6c5cd2;
     letter-spacing: 1px;
 }
 

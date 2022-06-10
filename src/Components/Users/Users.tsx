@@ -12,32 +12,37 @@ type PropsForUsersType = {
     totalUsersCount: number
     pageSize: number
     isFetching: boolean
+    toggleInProgress: Array<number>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     onChangeCurrentPage: (pageNumber: number) => void
+    changeToggleProgress: (status: boolean, userId: number) => void
 }
 
 const Users = (props: PropsForUsersType) => {
-
     let pagesNumber = Math.ceil(props.totalUsersCount / props.pageSize)
     let pagesArr: Array<number> = []
     for (let i = 1; i <= pagesNumber; i++) {
         pagesArr.push(i)
     }
     const onFollowButtonPress = (userId: number) => {
+        props.changeToggleProgress(true, userId)
         followAPI.followUser(userId)
             .then(data => {
                 if (data.resultCode === 0) {
                     props.follow(userId)
                 }
+                props.changeToggleProgress(false, userId)
             })
     }
     const onUnfollowButtonPress = (userId: number) => {
+        props.changeToggleProgress(true, userId)
         followAPI.unfollowUser(userId)
             .then(data => {
                 if (data.resultCode === 0) {
                     props.unfollow(userId)
                 }
+                props.changeToggleProgress(false, userId)
             })
     }
     const changeCurrentPageHandler = (pageNumber: number) => props.onChangeCurrentPage(pageNumber)
@@ -60,10 +65,14 @@ const Users = (props: PropsForUsersType) => {
                             </NavLink>
                         </div>
                         <div className={classes.followArea}>
-                            {u.followed ?
-                                <button className={classes.unfollowButton} onClick={() => {onUnfollowButtonPress(u.id)}}>Unfollow</button> :
+                            {u.followed
+                                ? <button className={props.toggleInProgress.some(id => id === u.id) ? classes.disabledButton : classes.followButton}
+                                        disabled={props.toggleInProgress.some(id => id === u.id)}
+                                        onClick={() => {onUnfollowButtonPress(u.id)}}>Unfollow</button>
 
-                                <button className={classes.followButton} onClick={() => {onFollowButtonPress(u.id)}}>Follow</button>}
+                                : <button className={props.toggleInProgress.some(id => id === u.id) ? classes.disabledButton : classes.followButton}
+                                        disabled={props.toggleInProgress.some(id => id === u.id)}
+                                        onClick={() => {onFollowButtonPress(u.id)}}>Follow</button>}
                         </div>
                         <div className={classes.userArea}>
                             <div className={classes.userName}>{u.name}</div>

@@ -4,12 +4,13 @@ export type UsersInitialStateType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    toggleInProgress: Array<number>
 }
 export type UsersType = {
     name: string
     id: number
     uniqueUrlName: null | string
-    photos: {small: string | null, large: string | null}
+    photos: { small: string | null, large: string | null }
     status: null | string
     followed: boolean
 
@@ -40,7 +41,18 @@ type ToggleIsFetchingType = {
     type: 'TOGGLE-IS-FETCHING'
     isFetching: boolean
 }
-export type UsersActionType = FollowType | UnfollowType | SetUsersType | SetCurrentPageType | ToggleIsFetchingType
+type ChangeToggleProgressType = {
+    type: 'CHANGE-TOGGLE-PROGRESS'
+    status: boolean
+    userId: number
+}
+export type UsersActionType =
+    FollowType
+    | UnfollowType
+    | SetUsersType
+    | SetCurrentPageType
+    | ToggleIsFetchingType
+    | ChangeToggleProgressType
 
 let initialState: UsersInitialStateType = {
     users: [
@@ -53,9 +65,10 @@ let initialState: UsersInitialStateType = {
         //     name: 'Papa Roach', status: 'Last Resort', location: { country: 'USA', city: 'New York' }}
     ],
     pageSize: 4,
-    totalUsersCount: 100,
+    totalUsersCount: 32,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    toggleInProgress: []
 }
 
 
@@ -66,7 +79,7 @@ export const usersReducer = (state: UsersInitialStateType = initialState, action
                 ...state,
                 users: state.users.map(u => u.id === action.userId ? {...u, followed: true} : u)
             }
-            case 'UNFOLLOW-USER':
+        case 'UNFOLLOW-USER':
             return {
                 ...state,
                 users: state.users.map(u => u.id === action.userId ? {...u, followed: false} : u)
@@ -77,6 +90,13 @@ export const usersReducer = (state: UsersInitialStateType = initialState, action
             return {...state, currentPage: action.pageNumber}
         case 'TOGGLE-IS-FETCHING':
             return {...state, isFetching: action.isFetching}
+        case 'CHANGE-TOGGLE-PROGRESS':
+            return {
+                ...state,
+                toggleInProgress: action.status
+                    ? [...state.toggleInProgress, action.userId]
+                    : state.toggleInProgress.filter(u => u !== action.userId)
+            }
         default:
             return state;
     }
@@ -96,6 +116,9 @@ export const setCurrentPage = (pageNumber: number) => {
 }
 export const toggleIsFetching = (isFetching: boolean) => {
     return {type: 'TOGGLE-IS-FETCHING', isFetching}
+}
+export const changeToggleProgress = (status: boolean, userId: number) => {
+    return {type: 'CHANGE-TOGGLE-PROGRESS', status, userId}
 }
 
 export default usersReducer;
