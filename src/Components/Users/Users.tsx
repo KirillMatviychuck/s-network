@@ -4,8 +4,7 @@ import defaultUserPicture from "../../assets/defaultUserPicture.jpg";
 import {UsersType} from "../../redux/users-reducer";
 import {Preloader} from "../common/Preloader";
 import {NavLink} from "react-router-dom";
-import {v1} from "uuid";
-import axios from "axios";
+import {followAPI} from "../../api/api";
 
 type PropsForUsersType = {
     users: Array<UsersType>
@@ -25,8 +24,22 @@ const Users = (props: PropsForUsersType) => {
     for (let i = 1; i <= pagesNumber; i++) {
         pagesArr.push(i)
     }
-    const onUnfollowButtonPress = (userId: number) => props.unfollow(userId)
-    const onFollowButtonPress = (userId: number) => props.follow(userId)
+    const onFollowButtonPress = (userId: number) => {
+        followAPI.followUser(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    props.follow(userId)
+                }
+            })
+    }
+    const onUnfollowButtonPress = (userId: number) => {
+        followAPI.unfollowUser(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    props.unfollow(userId)
+                }
+            })
+    }
     const changeCurrentPageHandler = (pageNumber: number) => props.onChangeCurrentPage(pageNumber)
 
     return (
@@ -48,37 +61,9 @@ const Users = (props: PropsForUsersType) => {
                         </div>
                         <div className={classes.followArea}>
                             {u.followed ?
-                                <button className={classes.unfollowButton} onClick={() => {
+                                <button className={classes.unfollowButton} onClick={() => {onUnfollowButtonPress(u.id)}}>Unfollow</button> :
 
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},
-                                        {
-                                            withCredentials: true,
-                                            headers: {
-                                                "API-KEY": "d41f126a-2e81-41e7-929c-8acd0a1d247a"
-                                            }
-                                        })
-                                        .then(response => {
-                                            if (response.data.resultCode === 0) {
-                                                onUnfollowButtonPress(u.id)
-                                            }
-                                        })
-                                }}>Unfollow</button> :
-
-                                <button className={classes.followButton} onClick={() => {
-
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},
-                                        {
-                                            withCredentials: true,
-                                            headers: {
-                                                "API-KEY": "d41f126a-2e81-41e7-929c-8acd0a1d247a"
-                                            }
-                                        })
-                                        .then(response => {
-                                            if (response.data.resultCode === 0) {
-                                                onFollowButtonPress(u.id)
-                                            }
-                                        })
-                                }}>Follow</button>}
+                                <button className={classes.followButton} onClick={() => {onFollowButtonPress(u.id)}}>Follow</button>}
                         </div>
                         <div className={classes.userArea}>
                             <div className={classes.userName}>{u.name}</div>

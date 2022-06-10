@@ -81,3 +81,11 @@
     cursor: pointer;
 }
 
+.defaultPageStyle {
+    margin: 2px;
+}
+
+.currentPage {
+    margin: 2px;
+}
+
