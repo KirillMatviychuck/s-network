@@ -8,16 +8,11 @@ export const instance = axios.create({
     }
 })
 
-// Users endpoint
 export const usersAPI = {
     getUsers(pageSize: number, currentPage: number) {
         return instance.get(`users?count=${pageSize}&page=${currentPage}`)
             .then(response => response.data)
-    }
-}
-
-// Follow endpoint
-export const followAPI = {
+    },
     unfollowUser(userId: number) {
         return instance.delete(`follow/${userId}`)
             .then(response => response.data)
@@ -28,3 +23,19 @@ export const followAPI = {
     }
 
 }
+
+export const headerAPI = {
+    authMe() {
+        return instance.get(`auth/me`)
+            .then(response => response.data)
+    }
+}
+
+export const profileAPI = {
+    currentUserProfile(userId: number) {
+        return instance.get(`profile/${userId}`)
+            .then(response => response.data)
+    }
+}
+
+

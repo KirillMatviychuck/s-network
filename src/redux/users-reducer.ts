@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
+
 export type UsersInitialStateType = {
     users: Array<UsersType>
     pageSize: number
@@ -13,13 +16,6 @@ export type UsersType = {
     photos: { small: string | null, large: string | null }
     status: null | string
     followed: boolean
-
-    // id: string
-    // followed: boolean
-    // avatar: string
-    // name: string
-    // status: string
-    // location: {country: string, city: string}
 }
 type FollowType = {
     type: 'FOLLOW-USER'
@@ -55,15 +51,7 @@ export type UsersActionType =
     | ChangeToggleProgressType
 
 let initialState: UsersInitialStateType = {
-    users: [
-        //test users
-        // {id: v1(), followed: false, avatar: 'https://media.istockphoto.com/photos/businessman-silhouette-as-avatar-or-default-profile-picture-picture-id476085198?k=20&m=476085198&s=612x612&w=0&h=8J3VgOZab_OiYoIuZfiMIvucFYB8vWYlKnSjKuKeYQM=',
-        //     name: 'Kirill', status: 'What I am doing now?', location: { country: 'Ukraine', city: 'Kiyv' }},
-        // {id: v1(), followed: false, avatar: 'https://media.istockphoto.com/photos/businessman-silhouette-as-avatar-or-default-profile-picture-picture-id476085198?k=20&m=476085198&s=612x612&w=0&h=8J3VgOZab_OiYoIuZfiMIvucFYB8vWYlKnSjKuKeYQM=',
-        //     name: 'Jeronimo', status: 'Here we go again', location: { country: 'Ukraine', city: 'Odesa' }},
-        // {id: v1(), followed: false, avatar: 'https://media.istockphoto.com/photos/businessman-silhouette-as-avatar-or-default-profile-picture-picture-id476085198?k=20&m=476085198&s=612x612&w=0&h=8J3VgOZab_OiYoIuZfiMIvucFYB8vWYlKnSjKuKeYQM=',
-        //     name: 'Papa Roach', status: 'Last Resort', location: { country: 'USA', city: 'New York' }}
-    ],
+    users: [],
     pageSize: 4,
     totalUsersCount: 32,
     currentPage: 1,
@@ -102,10 +90,11 @@ export const usersReducer = (state: UsersInitialStateType = initialState, action
     }
 }
 
-export const follow = (userId: number): FollowType => {
+// Action creators
+export const followSuccess = (userId: number): FollowType => {
     return {type: 'FOLLOW-USER', userId}
 }
-export const unfollow = (userId: number): UnfollowType => {
+export const unfollowSuccess = (userId: number): UnfollowType => {
     return {type: 'UNFOLLOW-USER', userId}
 }
 export const setUsers = (users: Array<UsersType>): SetUsersType => {
@@ -120,5 +109,32 @@ export const toggleIsFetching = (isFetching: boolean) => {
 export const changeToggleProgress = (status: boolean, userId: number) => {
     return {type: 'CHANGE-TOGGLE-PROGRESS', status, userId}
 }
+
+// Thunk creators
+export const getUsers = (pageSize: number, currentPage: number) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFetching(true))
+    usersAPI.getUsers(pageSize, currentPage).then(data => {
+        dispatch(setCurrentPage(currentPage))
+        dispatch(setUsers(data.items))
+        dispatch(toggleIsFetching(false))
+    })
+}
+export const follow = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(changeToggleProgress(true, userId))
+    usersAPI.followUser(userId)
+        .then(data => {
+            if (data.resultCode === 0) dispatch(followSuccess(userId))
+            dispatch(changeToggleProgress(false, userId))
+        })
+}
+export const unfollow = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(changeToggleProgress(true, userId))
+    usersAPI.unfollowUser(userId)
+        .then(data => {
+            if (data.resultCode === 0) dispatch(unfollowSuccess(userId))
+            dispatch(changeToggleProgress(false, userId))
+        })
+}
+
 
 export default usersReducer;

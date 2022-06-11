@@ -4,7 +4,7 @@ import defaultUserPicture from "../../assets/defaultUserPicture.jpg";
 import {UsersType} from "../../redux/users-reducer";
 import {Preloader} from "../common/Preloader";
 import {NavLink} from "react-router-dom";
-import {followAPI} from "../../api/api";
+import {Dispatch} from "redux";
 
 type PropsForUsersType = {
     users: Array<UsersType>
@@ -13,10 +13,9 @@ type PropsForUsersType = {
     pageSize: number
     isFetching: boolean
     toggleInProgress: Array<number>
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
+    follow: (userId: number) => (dispatch: Dispatch) => void
+    unfollow: (userId: number) => (dispatch: Dispatch) => void
     onChangeCurrentPage: (pageNumber: number) => void
-    changeToggleProgress: (status: boolean, userId: number) => void
 }
 
 const Users = (props: PropsForUsersType) => {
@@ -25,26 +24,8 @@ const Users = (props: PropsForUsersType) => {
     for (let i = 1; i <= pagesNumber; i++) {
         pagesArr.push(i)
     }
-    const onFollowButtonPress = (userId: number) => {
-        props.changeToggleProgress(true, userId)
-        followAPI.followUser(userId)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    props.follow(userId)
-                }
-                props.changeToggleProgress(false, userId)
-            })
-    }
-    const onUnfollowButtonPress = (userId: number) => {
-        props.changeToggleProgress(true, userId)
-        followAPI.unfollowUser(userId)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    props.unfollow(userId)
-                }
-                props.changeToggleProgress(false, userId)
-            })
-    }
+    const onFollowButtonPress = (userId: number) => props.follow(userId)
+    const onUnfollowButtonPress = (userId: number) => props.unfollow(userId)
     const changeCurrentPageHandler = (pageNumber: number) => props.onChangeCurrentPage(pageNumber)
 
     return (
@@ -78,8 +59,8 @@ const Users = (props: PropsForUsersType) => {
                             <div className={classes.userName}>{u.name}</div>
                             <div className={classes.userStatus}>{u.status}</div>
                             <div className={classes.userLocation}>
-                                <span className={classes.userCountry}>{'u.location.country'}</span><br/>
-                                <span className={classes.userCity}>{'u.location.city'}</span>
+                                <span className={classes.userCountry}>{'country'}</span><br/>
+                                <span className={classes.userCity}>{'city'}</span>
                             </div>
                         </div>
                     </div>

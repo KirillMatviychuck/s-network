@@ -1,4 +1,6 @@
 import {v1} from "uuid";
+import {Dispatch} from "redux";
+import {profileAPI} from "../api/api";
 
 type PostsType = {
     id: string
@@ -39,11 +41,11 @@ type UpdatePostTextACType = {
     type: 'UPDATE-NEW-POST-TEXT'
     newText: string
 }
-type SetUserProfileType = {
+type UserProfileACType = {
     type: 'SET-USER-PROFILE-TYPE'
     profile: UserProfileType
 }
-type ProfileActionType = AddPostACType | UpdatePostTextACType | SetUserProfileType
+type ProfileActionType = AddPostACType | UpdatePostTextACType | UserProfileACType
 
 let initialState: ProfileInitialStateType = {
     posts: [
@@ -83,8 +85,14 @@ export const addPostAC = (): AddPostACType => {
 export const updateNewPostTextAC = (text: string): UpdatePostTextACType => {
     return {type: 'UPDATE-NEW-POST-TEXT', newText: text}
 }
-export const setUserProfile = (profile: UserProfileType): SetUserProfileType => {
+export const userProfileAC = (profile: UserProfileType): UserProfileACType => {
     return {type: 'SET-USER-PROFILE-TYPE', profile}
 }
 
+export const setUserProfile = (userId: number) => (dispatch: Dispatch) => {
+    profileAPI.currentUserProfile(userId).then( data => {
+            dispatch(userProfileAC(data))
+        }
+    )
+}
 export default profileReducer;
