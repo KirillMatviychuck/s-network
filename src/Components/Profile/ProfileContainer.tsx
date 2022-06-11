@@ -1,10 +1,10 @@
 import React from "react";
 import Profile from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
 import {AppStoreType} from "../../redux/store-redux";
-import {setUserProfile, userProfileAC} from "../../redux/profile-reducer";
-import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {setUserProfile} from "../../redux/profile-reducer";
+import {Navigate, useLocation, useNavigate, useParams} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 function withRouter(Component: any) {
@@ -38,6 +38,7 @@ const mapStateToProps = (state: AppStoreType) => ({
     profile: state.profilePage.profile
 })
 
-export default connect(mapStateToProps, {setUserProfile})(withRouter(ProfileContainer))
-// export default connect (mapStateToProps, {setUserProfile}) (withRouter(ProfileContainer))
+const withRedirectProfilePage = withAuthRedirect(ProfileContainer)
+
+export default connect(mapStateToProps, {setUserProfile})(withRouter(withRedirectProfilePage))
 

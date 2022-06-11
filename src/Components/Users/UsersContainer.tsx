@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 import {AppStoreType} from "../../redux/store-redux";
 import {follow, getUsers, unfollow, UsersType} from "../../redux/users-reducer";
 import {Users} from "./Users";
+import {Navigate} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 type MapStateToPropsType = {
     users: Array<UsersType>
@@ -54,6 +56,8 @@ const mapStateToProps = (state: AppStoreType): MapStateToPropsType => {
         toggleInProgress: state.usersPage.toggleInProgress
     }
 }
+
+const withRedirectUserPage = withAuthRedirect(UsersClass)
 // const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 //     return {
 //         toggleFollow: (userId: number) => dispatch(toggleFollow(userId)),
@@ -64,4 +68,4 @@ const mapStateToProps = (state: AppStoreType): MapStateToPropsType => {
 // }
 
 export const UsersContainer = connect(mapStateToProps,
-    {getUsers, follow, unfollow})(UsersClass)
+    {getUsers, follow, unfollow})(withRedirectUserPage)

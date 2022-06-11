@@ -16,6 +16,7 @@ function Dialogs (props: PropsForDialogsType) {
     const addMessageHandler = () => {
         props.addMessage()
     }
+
     return (
         <div className={classNew.allDialogsDesktop}>
             <div className={classNew.allDialogsUsers}>
