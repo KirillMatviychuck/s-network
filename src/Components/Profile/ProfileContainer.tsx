@@ -3,9 +3,8 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {AppStoreType} from "../../redux/store-redux";
 import {setUserProfile} from "../../redux/profile-reducer";
-import {Navigate, useLocation, useNavigate, useParams} from "react-router-dom";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-import {compose} from "redux";
 
 
 function withRouter(Component: any) {
