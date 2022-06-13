@@ -3,8 +3,8 @@ import {connect} from "react-redux";
 import {AppStoreType} from "../../redux/store-redux";
 import {follow, getUsers, unfollow, UsersType} from "../../redux/users-reducer";
 import {Users} from "./Users";
-import {Navigate} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 type MapStateToPropsType = {
     users: Array<UsersType>
@@ -57,15 +57,8 @@ const mapStateToProps = (state: AppStoreType): MapStateToPropsType => {
     }
 }
 
-const withRedirectUserPage = withAuthRedirect(UsersClass)
-// const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-//     return {
-//         toggleFollow: (userId: number) => dispatch(toggleFollow(userId)),
-//         setUsers: (users: Array<UsersType>) => dispatch(setUsers(users)),
-//         setCurrentPage: (pageNumber: number) => dispatch(setCurrentPage(pageNumber)),
-//         toggleIsFetching: (isFetching: boolean) => dispatch(toggleIsFetching(isFetching))
-//     }
-// }
+export default compose(
+    connect(mapStateToProps,{getUsers, follow, unfollow}),
+    withAuthRedirect
+)(UsersClass)
 
-export const UsersContainer = connect(mapStateToProps,
-    {getUsers, follow, unfollow})(withRedirectUserPage)

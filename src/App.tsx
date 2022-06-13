@@ -6,10 +6,10 @@ import News from "./Components/Navbar/News/News";
 import Music from "./Components/Navbar/Music/Music";
 import Settings from "./Components/Navbar/Settings/Settings";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
-import {UsersContainer} from "./Components/Users/UsersContainer";
-import ProfileContainer from "./Components/Profile/ProfileContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import {LoginPage} from "./Components/Login/LoginPage";
+import UsersContainer from "./Components/Users/UsersContainer";
+import ProfileContainer from "./Components/Profile/ProfileContainer";
 
 
 function App() {
