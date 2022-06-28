@@ -13,8 +13,10 @@ class LoginPageContainer extends React.Component<any, any> {
         }
         return (
             <div className={classes.loginWrap}>
-                <div className={classes.title}>Login</div>
-                <LoginPage login={this.props.login}/>
+                <div className={classes.loginWindow}>
+                    <div className={classes.title}>Login</div>
+                    <LoginPage login={this.props.login}/>
+                </div>
             </div>
         )
     }

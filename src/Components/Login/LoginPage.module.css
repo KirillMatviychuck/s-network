@@ -1,6 +1,6 @@
-
 .loginForm {
-    height: 150px;
+    height: 350px;
+    width: 300px;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
@@ -8,28 +8,69 @@
     justify-content: space-around;
 }
 
-.emailInput {
-    height: 30px;
-    outline: none;
-    border: 1px solid #353e49;
-    border-radius: 15px;
+input[type="email"] {
+    font-family: Centaur, sans-serif;
+    font-size: 1.4em;
+    text-align: center;
 }
 
-.loginPassword {
-    height: 30px;
+input[type="password"] {
+    font-family: Centaur, sans-serif;
+    font-size: 1.4em;
+    text-align: center;
+}
+
+::-webkit-input-placeholder {
+    font-family: Centaur, sans-serif;
+    text-align: center;
+}
+
+.emailLabel {
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 280px;
+    display: flex;
+    justify-items: left;
+}
+.emailInput {
+    border: none;
+    background-color: transparent;
     outline: none;
-    border: 1px solid #353e49;
-    border-radius: 15px;
+    border-bottom: 1px solid #5b626e;
+    height: 30px;
+    width: 280px;
+}
+.passwordLabel {
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 280px;
+    display: flex;
+    justify-items: left;
+}
+.loginPassword {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    border-bottom: 1px solid #5b626e;
+    height: 30px;
+    width: 280px;
 }
 
 .rememberMeBlock {
-    font-size: 0.7em;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
 .submitButton {
-    width: 100px;
-    height: 25px;
-    outline: none;
+    font-family: Centaur, sans-serif;
+    color: white;
+    background-color: #353e49;
+    width: 180px;
+    height: 50px;
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: 2px;
     border: 1px solid #353e49;
-    border-radius: 10px;
+    border-radius: 100px;
+    cursor: pointer;
 }

@@ -23,12 +23,13 @@ const LoginPage: React.FC<PropsType> = ({login}) => {
             >
                 {({status, handleSubmit}) => (
                     <Form onSubmit={handleSubmit} className={classes.loginForm}>
-
+                        <label htmlFor="email" className={classes.emailLabel}>Your email</label>
                         <Field className={classes.emailInput}
                                name="email"
                                type="email"
                                placeholder="Enter your email"
                         />
+                        <label htmlFor="password" className={classes.passwordLabel}>Password</label>
                         <Field className={classes.loginPassword}
                                name="password"
                                type={"password"}
@@ -43,7 +44,7 @@ const LoginPage: React.FC<PropsType> = ({login}) => {
                                 Remember me</label>
                         </div>
                         <div>{status}</div>
-                        <button type="submit" className={classes.submitButton}>Submit</button>
+                        <button type="submit" className={classes.submitButton}>Sign In</button>
                     </Form>
                 )}
 

@@ -7,6 +7,7 @@
 }
 
 .app-wrapper {
+  font-family: Verdana , sans-serif;
   margin: 0px auto;
   display: grid;
   width: 1200px;

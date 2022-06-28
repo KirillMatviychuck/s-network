@@ -1,7 +1,9 @@
 .nav {
+    font-family: Centaur, sans-serif;
+    font-size: 1.6em;
+    font-weight: bold;
     grid-area: n;
     background-color: rgb(236, 221, 221);
-    font-size: 1.4em;
     border-radius: 10px;
 }
 
@@ -15,7 +17,7 @@
 }
 
 .defaultClass {
-    color: black;
+    color: #353e49;
 }
 
 .nav a:link {
