@@ -25,19 +25,20 @@ function withRouter(Component: any) {
 class ProfileContainer extends React.Component<any, any>{
     componentDidMount() {
         let userId = this.props.router.params.userId
-        if (!userId) userId = 24037;
+        if (!userId) userId = this.props.myId;
         this.props.setUserProfile(userId)
         this.props.getUserStatus(userId)
     }
 
     render() {
-        return <Profile {...this.props} userProfile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
+        return <Profile {...this.props} userProfile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus} />
     }
 }
 
 const mapStateToProps = (state: AppStoreType) => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    myId: state.authorization.id
 })
 
 const withRedirectProfilePage = withAuthRedirect(ProfileContainer)

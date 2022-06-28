@@ -48,11 +48,13 @@ export const authMe = () => (dispatch: Dispatch) => {
             }
         })
 }
-export const login = (email: string, password: string, rememberMe: boolean = false) => (dispatch: Dispatch) => {
+export const login = (email: string, password: string, rememberMe: boolean = false, setStatus: (message: string) => void) => (dispatch: Dispatch) => {
     headerAPI.login(email,password, rememberMe)
         .then(data => {
             if(data.resultCode === 0) {
                 dispatch(authMe() as any)
+            } else {
+                setStatus(data.messages[0])
             }
         })
 }

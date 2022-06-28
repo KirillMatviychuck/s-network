@@ -34,7 +34,6 @@ export const usersAPI = {
 
 export const headerAPI = {
     authMe() {
-
         return instance.get(`auth/me`)
             .then(response => response.data)
     },
@@ -45,6 +44,12 @@ export const headerAPI = {
     logout() {
         return instance.delete(`auth/login`)
             .then(response => response.data)
+    },
+    changePhoto() {
+        return instance.put(`profile/photo`)
+            .then(res => {
+                return res
+            })
     }
 }
 

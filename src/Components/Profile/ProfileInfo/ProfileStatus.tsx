@@ -1,4 +1,5 @@
 import React, {ChangeEvent} from "react";
+import classes from './ProfileStatus.module.css'
 
 class ProfileStatus extends React.Component<any, any> {
     state = {
@@ -34,7 +35,7 @@ class ProfileStatus extends React.Component<any, any> {
         return (
             <h3>
                 {!this.state.editMode
-                    ? <span onDoubleClick={this.activateEditMode.bind(this)}>{this.props.status}</span>
+                    ? <span className={classes.profileStatus} onDoubleClick={this.activateEditMode.bind(this)}>{this.props.status}</span>
                     : <input value={this.state.status} onChange={this.onStatusInputChange} autoFocus
                              placeholder={'Write your status'} onBlur={this.deactivateEditMode.bind(this)}
                              type="text"/>}

@@ -14,7 +14,7 @@ type ProfileInfoPropsType = {
 
 const ProfileInfo: React.FC<ProfileInfoPropsType> = ({userProfile, status, updateStatus}) => {
     if (!userProfile) {
-        return <Preloader />
+        return <Preloader/>
     }
     return (
         <div>

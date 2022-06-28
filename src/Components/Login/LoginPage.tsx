@@ -4,7 +4,7 @@ import classes from './LoginPage.module.css'
 import {Dispatch} from "redux";
 
 type PropsType = {
-    login: (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => void
+    login: (email: string, password: string, rememberMe: boolean, setStatus: () => void) => (dispatch: Dispatch) => void
 }
 
 const LoginPage: React.FC<PropsType> = ({login}) => {
@@ -16,11 +16,12 @@ const LoginPage: React.FC<PropsType> = ({login}) => {
                     password: '',
                     rememberMe: false
                 }}
-                onSubmit={values => {
-                    login(values.email,values.password,values.rememberMe)
+                onSubmit={(values, {setSubmitting, setStatus}) => {
+                    login(values.email,values.password,values.rememberMe, setStatus)
+                    setSubmitting(false)
                 }}
             >
-                {({values, errors, touched, handleChange, handleBlur, handleSubmit, isValid, dirty}) => (
+                {({status, handleSubmit}) => (
                     <Form onSubmit={handleSubmit} className={classes.loginForm}>
 
                         <Field className={classes.emailInput}
@@ -41,6 +42,7 @@ const LoginPage: React.FC<PropsType> = ({login}) => {
                                 />
                                 Remember me</label>
                         </div>
+                        <div>{status}</div>
                         <button type="submit" className={classes.submitButton}>Submit</button>
                     </Form>
                 )}
