@@ -7,9 +7,9 @@ import Music from "./Components/Navbar/Music/Music";
 import Settings from "./Components/Navbar/Settings/Settings";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
-import {LoginPage} from "./Components/Login/LoginPage";
 import UsersContainer from "./Components/Users/UsersContainer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
+import LoginPageContainer from "./Components/Login/LoginPageContainer";
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
                     <Navbar/>
                     <div className={'app-wrapper-content'}>
                         <Routes>
-                            <Route path="/login" element={<LoginPage />}/>
+                            <Route path="/login" element={<LoginPageContainer />}/>
                             <Route path="/profile" element={<ProfileContainer />}>
                                 <Route path=":userId" element={<ProfileContainer />} />
                             </Route>

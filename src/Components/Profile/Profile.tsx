@@ -3,15 +3,18 @@ import classNew from './Profile.module.css'
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {UserProfileType} from "../../redux/profile-reducer";
+import {Dispatch} from "redux";
 
 type ProfilePropsType = {
     userProfile: UserProfileType
+    status: string
+    updateStatus: (status: string) => (dispatch: Dispatch) => void
 }
 
-const Profile: React.FC<ProfilePropsType> = ({userProfile}) => {
+const Profile: React.FC<ProfilePropsType> = ({userProfile, status, updateStatus}) => {
     return (
         <div className={classNew.content}>
-            <ProfileInfo userProfile={userProfile}/>
+            <ProfileInfo userProfile={userProfile} status={status} updateStatus={updateStatus}/>
             <MyPostsContainer />
         </div>
     )

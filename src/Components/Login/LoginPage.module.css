@@ -1,4 +1,35 @@
-.loginWrap {
+
+.loginForm {
+    height: 150px;
+    margin-top: 20px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.emailInput {
+    height: 30px;
+    outline: none;
+    border: 1px solid #353e49;
+    border-radius: 15px;
+}
+
+.loginPassword {
+    height: 30px;
+    outline: none;
+    border: 1px solid #353e49;
+    border-radius: 15px;
+}
+
+.rememberMeBlock {
+    font-size: 0.7em;
+}
+
+.submitButton {
+    width: 100px;
+    height: 25px;
+    outline: none;
+    border: 1px solid #353e49;
+    border-radius: 10px;
 }

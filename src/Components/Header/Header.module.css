@@ -26,7 +26,14 @@
     color: black;
 }
 
-.emptyDiv {
+.authWindow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logout {
     height: 60px;
     width: 70px;
+    cursor: pointer;
 }
