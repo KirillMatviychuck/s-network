@@ -74,3 +74,29 @@ input[type="password"] {
     border-radius: 100px;
     cursor: pointer;
 }
+
+.errorStatus {
+    height: 20px;
+    width: 200px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: crimson;
+}
+
+.error {
+    color: crimson;
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 280px;
+    display: flex;
+    justify-items: left;
+}
+
+.inputError {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    border-bottom: 1px solid crimson;
+    height: 30px;
+    width: 280px;
+}

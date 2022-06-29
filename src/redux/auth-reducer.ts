@@ -40,7 +40,7 @@ export const setAuthUserData = (id: number | null, login: string | null, email: 
 }
 
 export const authMe = () => (dispatch: Dispatch) => {
-    headerAPI.authMe()
+    return headerAPI.authMe()
         .then(data => {
             if (data.resultCode === 0) {
                 let {id, login, email} = data.data
