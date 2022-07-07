@@ -6,7 +6,8 @@ type PostTypes = {
     numberOfLikes: number
 }
 
-function Post(props: PostTypes) {
+const Post = React.memo((props: PostTypes) => {
+
     return (
         <div className={classNew.item}>
             <img
@@ -18,6 +19,6 @@ function Post(props: PostTypes) {
             </div>
         </div>
     )
-}
+})
 
 export default Post;

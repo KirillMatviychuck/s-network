@@ -1,38 +1,30 @@
-import {headerAPI} from "../api/api";
-import {Dispatch} from "redux";
 import {authMe} from "./auth-reducer";
+import {AppThunkType} from "./store-redux";
 
-type SetUserAuthData = {
-    type: 'INITIALIZED-SUCCESS'
-}
-
-export type AuthActionType = SetUserAuthData
-export type AuthInitialStateType = {
-    initialized: boolean
-}
-let initialState: AuthInitialStateType = {
+const initialState = {
     initialized: false
 }
 
-
-export const appReducer = (state: AuthInitialStateType = initialState, action: AuthActionType): AuthInitialStateType => {
+export const appReducer = (state: AuthInitialStateType = initialState, action: AppReduceActionType): AuthInitialStateType => {
     switch (action.type) {
-        case 'INITIALIZED-SUCCESS':
-            return {
-                ...state,
-                initialized: true
-            }
+        case 'APP/INITIALIZED-SUCCESS':
+            return {...state, initialized: true}
         default:
             return state;
     }
 }
 
-export const initializeAC = (): SetUserAuthData => {
-    return {type: 'INITIALIZED-SUCCESS'}
+//actions
+export const initializeAC = () => ({type: 'APP/INITIALIZED-SUCCESS'} as const)
+
+//thunks
+export const initializeApp = (): AppThunkType => async (dispatch) => {
+    await dispatch(authMe())
+    dispatch(initializeAC())
 }
 
-export const initializeApp = () => (dispatch: Dispatch) => {
-    dispatch(authMe() as any)
-        .then(() => {dispatch(initializeAC())})
-}
+//types
+export type AuthInitialStateType = typeof initialState
+export type AppReduceActionType =
+    | ReturnType<typeof initializeAC>
 

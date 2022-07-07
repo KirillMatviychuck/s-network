@@ -1,28 +1,6 @@
 import {v1} from "uuid";
 
-type DialogsTypes = {
-    id: string
-    name: string
-}
-type MessagesTypes = {
-    id: string
-    message: string
-}
-export type DialogsInitialStateType = {
-    users: Array<DialogsTypes>
-    messages: Array<MessagesTypes>
-    newChatText: string
-}
-export type ActionTypeForDialogsReducer = NewChatTextACType | AddChatACType
-type NewChatTextACType = {
-    type: 'UPDATE-NEW-CHAT-TEXT'
-    chatText: string
-}
-type AddChatACType = {
-    type: 'ADD-MESSAGE'
-}
-
-let initialState: DialogsInitialStateType = {
+const DialogsInitialState = {
         users: [
             {id: v1(), name: 'Kirill'},
             {id: v1(), name: 'Andrew'},
@@ -42,35 +20,28 @@ let initialState: DialogsInitialStateType = {
 }
 
 
-export const dialogsReducer = (state: DialogsInitialStateType = initialState, action: ActionTypeForDialogsReducer): DialogsInitialStateType => {
+export const dialogsReducer = (state: DialogsInitialStateType = DialogsInitialState, action: DialogsActionType): DialogsInitialStateType => {
     switch (action.type) {
-        case 'UPDATE-NEW-CHAT-TEXT':
+        case 'DIALOGS/UPDATE-NEW-CHAT-TEXT':
             return {...state, newChatText: action.chatText}
-        // state.newChatText = action.chatText;
-        // return state;
-        case 'ADD-MESSAGE':
-            let textBody = state.newChatText
-            let newMessage = {id: v1(), message: textBody}
+        case 'DIALOGS/ADD-MESSAGE':
             return {
                 ...state,
                 newChatText: '',
-                messages: [...state.messages, newMessage]
+                messages: [...state.messages, {id: v1(), message: state.newChatText}]
             }
-            // let newMessage = {id: v1(), message: state.newChatText}
-            // state.messages.push(newMessage)
-            // state.newChatText = ''
-            // return state;
-
         default:
             return state;
     }
 }
 
-export const newChatTextAC = (newText: string): NewChatTextACType => {
-    return {type: 'UPDATE-NEW-CHAT-TEXT', chatText: newText}
-}
-export const addMessageAC = (): AddChatACType => {
-    return {type: 'ADD-MESSAGE'}
-}
+export const newChatTextAC = (newText: string) => ({type: 'DIALOGS/UPDATE-NEW-CHAT-TEXT', chatText: newText} as const)
+export const addMessageAC = () => ({type: 'DIALOGS/ADD-MESSAGE'} as const)
+
+export type DialogsActionType =
+    | ReturnType<typeof newChatTextAC>
+    | ReturnType<typeof addMessageAC>
+
+export type DialogsInitialStateType = typeof DialogsInitialState
 
 export default dialogsReducer;

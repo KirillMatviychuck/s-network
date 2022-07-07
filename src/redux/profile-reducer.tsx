@@ -1,12 +1,60 @@
 import {v1} from "uuid";
 import {Dispatch} from "redux";
 import {profileAPI} from "../api/api";
+import {AppThunkType} from "./store-redux";
 
-type PostsType = {
-    id: string
-    post: string
-    likesCount: number
+let initialState: ProfileInitialStateType = {
+    posts: [
+        {id: v1(), post: 'my first post', likesCount: 5},
+        {id: v1(), post: 'nice I believe not last lol', likesCount: 17},
+        {id: v1(), post: 'I am believe in it too', likesCount: 6},
+        {id: v1(), post: 'What interesting movie do you know?', likesCount: 5},
+    ],
+    newPostText: '',
+    profile: null,
+    status: ""
 }
+
+const profileReducer = (state: ProfileInitialStateType = initialState, action: ProfileActionType): ProfileInitialStateType => {
+    switch (action.type) {
+        case 'PROFILE/ADD-POST':
+            return {
+                ...state,
+                posts: [...state.posts, {id: v1(), post: state.newPostText, likesCount: 0}],
+                newPostText: ''
+            }
+        case 'PROFILE/UPDATE-NEW-POST-TEXT':
+            return { ...state, newPostText: action.newText }
+        case 'PROFILE/SET-USER-PROFILE-TYPE':
+            return {...state, profile: action.profile}
+        case 'PROFILE/SET-USER-STATUS':
+            return {...state, status: action.status}
+        default:
+            return state;
+    }
+}
+
+// Actions
+export const addPostAC = () => ({type: 'PROFILE/ADD-POST'} as const)
+export const updateNewPostTextAC = (text: string) => ({type: 'PROFILE/UPDATE-NEW-POST-TEXT', newText: text} as const)
+export const userProfileAC = (profile: UserProfileType) => ({type: 'PROFILE/SET-USER-PROFILE-TYPE', profile} as const)
+export const setUserStatus = (status: string) => ({type: 'PROFILE/SET-USER-STATUS', status} as const)
+
+// Thunks
+export const setUserProfile = (userId: number): AppThunkType => async (dispatch) => {
+    const data = await profileAPI.currentUserProfile(userId)
+    dispatch(userProfileAC(data))
+}
+export const getUserStatus = (userId: string): AppThunkType => async (dispatch) => {
+    const data = await profileAPI.getUserStatus(userId)
+    dispatch(setUserStatus(data))
+}
+export const updateStatus = (status: string): AppThunkType => async (dispatch) => {
+    await profileAPI.updateStatus(status)
+    dispatch(setUserStatus(status))
+}
+
+//Types
 type UserProfileContactsType = {
     facebook: string
     website: string
@@ -30,90 +78,16 @@ export type UserProfileType = {
     }
 }
 export type ProfileInitialStateType = {
-    posts: Array<PostsType>
+    posts: Array<{ id: string, post: string, likesCount: number }>
     newPostText: string
     profile: UserProfileType | null
     status: string
 }
-type AddPostACType = {
-    type: 'ADD-POST'
-}
-type UpdatePostTextACType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
-type UserProfileACType = {
-    type: 'SET-USER-PROFILE-TYPE'
-    profile: UserProfileType
-}
-type SetUserStatus = {
-    type: 'SET-USER-STATUS'
-    status: string
-}
-type ProfileActionType = AddPostACType | UpdatePostTextACType | UserProfileACType | SetUserStatus
-
-let initialState: ProfileInitialStateType = {
-    posts: [
-        {id: v1(), post: 'my first post', likesCount: 5},
-        {id: v1(), post: 'nice I believe not last lol', likesCount: 17},
-        {id: v1(), post: 'I am believe in it too', likesCount: 6},
-        {id: v1(), post: 'What interesting movie do you know?', likesCount: 5},
-    ],
-    newPostText: '',
-    profile: null,
-    status: ""
-}
-
-const profileReducer = (state: ProfileInitialStateType = initialState, action: ProfileActionType): ProfileInitialStateType => {
-    switch (action.type) {
-        case 'ADD-POST':
-            let newPost = {id: v1(), post: state.newPostText, likesCount: 0}
-            return {
-                ...state,
-                posts: [...state.posts, newPost],
-                newPostText: ''
-            }
-        case 'UPDATE-NEW-POST-TEXT':
-            return {
-                ...state,
-                newPostText: action.newText
-            }
-        case 'SET-USER-PROFILE-TYPE':
-            return {...state, profile: action.profile}
-        case 'SET-USER-STATUS':
-            return {...state, status: action.status}
-        default:
-            return state;
-    }
-}
-
-export const addPostAC = (): AddPostACType => {
-    return {type: 'ADD-POST'}
-}
-export const updateNewPostTextAC = (text: string): UpdatePostTextACType => {
-    return {type: 'UPDATE-NEW-POST-TEXT', newText: text}
-}
-export const userProfileAC = (profile: UserProfileType): UserProfileACType => {
-    return {type: 'SET-USER-PROFILE-TYPE', profile}
-}
-export const setUserStatus = (status: string): SetUserStatus => {
-    return {type: 'SET-USER-STATUS', status}
-}
-
-export const setUserProfile = (userId: number) => (dispatch: Dispatch) => {
-    profileAPI.currentUserProfile(userId).then( data => {
-            dispatch(userProfileAC(data))
-        }
-    )
-}
-export const getUserStatus = (userId: string) => (dispatch: Dispatch) => {
-    profileAPI.getUserStatus(userId)
-        .then(data => dispatch(setUserStatus(data)))
-}
-export const updateStatus = (status: string) => (dispatch: Dispatch) => {
-    profileAPI.updateStatus(status)
-        .then(res => dispatch(setUserStatus(status)))
-}
+export type ProfileActionType =
+    | ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof userProfileAC>
+    | ReturnType<typeof setUserStatus>
 
 
 export default profileReducer;

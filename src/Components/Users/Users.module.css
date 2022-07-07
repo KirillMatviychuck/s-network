@@ -4,95 +4,14 @@
     flex-direction: column;
 }
 
-.userWrapper {
-    margin: 10px;
-    padding: 10px;
-    width: 600px;
-    display: grid;
-    grid-template-columns: 90px 1fr;
-    grid-template-areas: 'ava user'
-                         'follow user';
-
-}
-
-.avatarArea {
-    grid-area: ava;
-}
-
-.followArea {
-    grid-area: follow
-}
-
-.userArea {
-    font-family: "Times New Roman", sans-serif;
-    color: #353e49;
-    border: 1px #353e49 solid;
-    border-radius: 10px;
-    grid-area: user;
-    display: grid;
-    grid-template-areas: 'n c'
-                         's c';
-    justify-content: space-between;
-}
-
-.userAvatar {
-    height: 70px;
-    width: 70px;
-    border-radius: 100px;
-}
-
-.followButton {
-    color: white;
-    width: 70px;
-    height: 25px;
-    border: 1px #353e49 solid;
-    border-radius: 5px;
-    background-color: #353e49;
-    letter-spacing: 1px;
-}
-
-.disabledButton {
-    color: white;
-    width: 70px;
-    height: 25px;
-    border: 1px #353e49 solid;
-    border-radius: 5px;
-    background-color: #6c5cd2;
-    letter-spacing: 1px;
-}
-
-.userName {
-    font-size: 1.3em;
-    font-weight: bold;
-    grid-area: n;
-    padding: 5px 0px 0px 10px;
-}
-
-.userStatus {
-    font-size: 1.1em;
-    font-style: italic;
-    grid-area: s;
-    padding-left: 10px;
-}
-
-.userLocation {
-    font-size: 1.2em;
-    font-weight: bold;
-    grid-area: c;
-    width: 80px;
-}
-
 .currentPage {
     font-weight: bold;
     cursor: pointer;
 }
 
 .defaultPageStyle {
-    cursor: pointer;
-}
-
-.defaultPageStyle {
     margin: 2px;
+    cursor: pointer;
 }
 
 .currentPage {

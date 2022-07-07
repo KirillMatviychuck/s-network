@@ -21,6 +21,7 @@ const LoginPage: React.FC<PropsType> = ({login}) => {
                     setSubmitting(false)
                 }}
             >
+
                 {({status, handleSubmit}) => (
                     <Form onSubmit={handleSubmit} className={classes.loginForm}>
                         <label htmlFor="email" className={status ? classes.error : classes.emailLabel}>Your email</label>

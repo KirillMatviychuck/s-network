@@ -8,9 +8,8 @@ import {Navigate} from "react-router-dom";
 
 class LoginPageContainer extends React.Component<any, any> {
     render() {
-        if (this.props.isAuth) {
-            return <Navigate to={'/profile'}/>
-        }
+        if (this.props.isAuth) return <Navigate to={'/profile'}/>
+
         return (
             <div className={classes.loginWrap}>
                 <div className={classes.loginWindow}>

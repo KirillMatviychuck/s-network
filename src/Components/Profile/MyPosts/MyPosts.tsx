@@ -3,7 +3,8 @@ import classNew from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {PropsForProfileType} from "./MyPostsContainer";
 
-function MyPosts(props: PropsForProfileType) {
+const MyPosts = React.memo((props: PropsForProfileType) => {
+    console.log('2222')
     let displayNewPost = props.profilePage.posts.map(t => <Post key={t.id} message={t.post}
                                                                  numberOfLikes={t.likesCount}/>)
 
@@ -36,6 +37,6 @@ function MyPosts(props: PropsForProfileType) {
             </div>
         </div>
     )
-}
+})
 
 export default MyPosts;

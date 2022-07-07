@@ -17,12 +17,10 @@ import {initializeApp} from "./redux/app-reducer";
 
 
 class App extends React.Component<any, any> {
-
     componentDidMount() {
         this.props.initializeApp()
     }
     render() {
-        debugger
         if (!this.props.initialized) return <Preloader />
         return (
             <BrowserRouter>
@@ -33,7 +31,6 @@ class App extends React.Component<any, any> {
                         <div className={'app-wrapper-content'}>
                             <Routes>
                                 <Route path="/login" element={<LoginPageContainer/>}/>
-                                <Route path="/" element={<LoginPageContainer/>}/>
                                 <Route path="/profile" element={<ProfileContainer/>}>
                                     <Route path=":userId" element={<ProfileContainer/>}/>
                                 </Route>

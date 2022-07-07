@@ -1,29 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
 import {AppStoreType} from "../../redux/store-redux";
-import {follow, getUsers, unfollow, UsersType} from "../../redux/users-reducer";
+import {follow, getUsers, unfollow} from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
-
-type MapStateToPropsType = {
-    users: Array<UsersType>
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-    toggleInProgress: Array<number>
-}
-// type MapDispatchToPropsType = {
-//     follow: (userId: number) => void
-//     unfollow: (userId: number) => void
-//     setUsers: (users: Array<UsersType>) => void
-//     setCurrentPage: (currentPage: number) => void
-//     toggleIsFetching: (isFetching: boolean) => void
-//     changeToggleProgress: (status: boolean, userId: number) => void
-//     getUsers: (pageSize: number, currentPage: number) => (dispatch: Dispatch) => void
-// }
-// export type PropsForUsersClassPageType = MapStateToPropsType & MapDispatchToPropsType
 
 class UsersClass extends React.Component<any, any> {
 
@@ -46,7 +27,7 @@ class UsersClass extends React.Component<any, any> {
     }
 }
 
-const mapStateToProps = (state: AppStoreType): MapStateToPropsType => {
+const mapStateToProps = (state: AppStoreType) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,

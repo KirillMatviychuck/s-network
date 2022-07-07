@@ -1,8 +1,8 @@
 import React from "react";
 import {UserProfileType} from "../../../redux/profile-reducer";
 import {Preloader} from "../../common/Preloader";
-import {ProfileStatus} from "./ProfileStatus";
 import {Dispatch} from "redux";
+import {ProfileStatusFC} from "./ProfileStatusFC";
 
 
 type ProfileInfoPropsType = {
@@ -20,7 +20,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({userProfile, status, updat
         <div>
             <div>
                 <img src={userProfile.photos.large} alt="user"/>
-                <ProfileStatus status={status} updateStatus={updateStatus}/>
+                <ProfileStatusFC status={status} updateStatus={updateStatus}/>
             </div>
         </div>
     )

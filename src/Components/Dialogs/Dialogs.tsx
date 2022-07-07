@@ -5,17 +5,12 @@ import Messages from "./Messages/Messages";
 import {PropsForDialogsType} from "./DialogsContainer";
 
 
-function Dialogs (props: PropsForDialogsType) {
-    let addNewUser = props.dialogsPage.users.map(t => <DialogsUsers key={t.id} id={t.id} name={t.name}/>)
-    let addNewMessage = props.dialogsPage.messages.map(t => <Messages key={t.id} id={t.id} message={t.message}/>)
+const Dialogs: React.FC<PropsForDialogsType> = ({dialogsPage,onChangeChatArea,addMessage}) => {
+    let addNewUser = dialogsPage.users.map(t => <DialogsUsers key={t.id} id={t.id} name={t.name}/>)
+    let addNewMessage = dialogsPage.messages.map(t => <Messages key={t.id} id={t.id} message={t.message}/>)
 
-    const onChangeChatArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let text = e.currentTarget.value
-        props.onChangeChatArea(text)
-    }
-    const addMessageHandler = () => {
-        props.addMessage()
-    }
+    const changeChatTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => onChangeChatArea(e.currentTarget.value)
+    const addMessageHandler = () => addMessage()
 
     return (
         <div className={classNew.allDialogsDesktop}>
@@ -26,7 +21,7 @@ function Dialogs (props: PropsForDialogsType) {
                 {addNewMessage}
             </div>
             <div className={classNew.textAreaBlock}>
-                <textarea value={props.dialogsPage.newChatText} onChange={onChangeChatArea}>
+                <textarea value={dialogsPage.newChatText} onChange={changeChatTextHandler}>
 
                 </textarea>
                 <div className={classNew.chatButton}> <button onClick={addMessageHandler}> Send </button> </div>

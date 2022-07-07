@@ -1,8 +1,7 @@
 import Dialogs from "./Dialogs";
-import React from "react";
 import {addMessageAC, DialogsInitialStateType, newChatTextAC} from "../../redux/dialogs-reducer";
 import {connect} from "react-redux";
-import {AppStoreType} from "../../redux/store-redux";
+import {AppActionType, AppStoreType} from "../../redux/store-redux";
 import {compose, Dispatch} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
@@ -20,7 +19,7 @@ const mapStateToProps = (state: AppStoreType): MapStateToPropsType => {
         dialogsPage: state.dialogsPage
     }
 }
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+const mapDispatchToProps = (dispatch: Dispatch<AppActionType>): MapDispatchToPropsType => {
     return {
         onChangeChatArea: (text: string) => dispatch(newChatTextAC(text)),
         addMessage: () => dispatch(addMessageAC())
