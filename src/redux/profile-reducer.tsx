@@ -73,8 +73,8 @@ export type UserProfileType = {
     fullName: string
     userId: number
     photos: {
-        small: string
-        large: string
+        small: string | null
+        large: string | null
     }
 }
 export type ProfileInitialStateType = {
