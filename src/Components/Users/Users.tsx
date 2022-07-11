@@ -4,6 +4,7 @@ import {UsersType} from "../../redux/users-reducer";
 import {Preloader} from "../common/Preloader";
 import {Dispatch} from "redux";
 import {User} from "./User/User";
+import {Paginator} from "./Paginator";
 
 type PropsForUsersType = {
     users: Array<UsersType>
@@ -28,25 +29,12 @@ const Users: React.FC<PropsForUsersType> = ({
                                                 follow,
                                                 isFetching
                                             }) => {
-    let pagesNumber = Math.ceil(totalUsersCount / pageSize)
-    let pagesArr: Array<number> = []
-    for (let i = 1; i <= pagesNumber; i++) {
-        pagesArr.push(i)
-    }
-
-    const changeCurrentPageHandler = (pageNumber: number) => onChangeCurrentPage(pageNumber)
 
     return (
         <div className={classes.wrapper}>
             {isFetching ? <Preloader/> : null}
 
-            <div className={classes.pages}>
-                {pagesArr.map(p => <span key={pagesArr[p]}
-                                         className={currentPage === p ? classes.currentPage : classes.defaultPageStyle}
-                                         onClick={() => {
-                                             changeCurrentPageHandler(p)
-                                         }}>{p}</span>)}
-            </div>
+            <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage} onChangeCurrentPage={onChangeCurrentPage}/>
             {
                 users.map(u => <User key={u.id}
                                      userId={u.id}

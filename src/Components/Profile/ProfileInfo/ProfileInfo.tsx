@@ -3,7 +3,8 @@ import {UserProfileType} from "../../../redux/profile-reducer";
 import {Preloader} from "../../common/Preloader";
 import {Dispatch} from "redux";
 import {ProfileStatusFC} from "./ProfileStatusFC";
-
+import defaultUserPicture from '../../../assets/defaultUserPicture.jpg'
+import classes from './ProfileInfo.module.css'
 
 type ProfileInfoPropsType = {
     userProfile: UserProfileType
@@ -18,8 +19,8 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({userProfile, status, updat
     }
     return (
         <div>
-            <div>
-                <img src={userProfile.photos.large} alt="user"/>
+            <div className={classes.mainWrap}>
+                <img src={userProfile.photos.large ? userProfile.photos.large : defaultUserPicture} alt="user"/>
                 <ProfileStatusFC status={status} updateStatus={updateStatus}/>
             </div>
         </div>

@@ -1,11 +1,10 @@
-import {Dispatch} from "redux";
 import {usersAPI} from "../api/api";
-import {AppActionType, AppThunkType} from "./store-redux";
+import {AppThunkType} from "./store-redux";
 
 const initialState: UsersInitialStateType = {
     users: [],
     pageSize: 4,
-    totalUsersCount: 32,
+    totalUsersCount: 120,
     currentPage: 1,
     isFetching: false,
     toggleInProgress: []
