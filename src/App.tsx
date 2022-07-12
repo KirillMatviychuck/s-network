@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from "./Components/Navbar/Navbar";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
 import News from "./Components/Navbar/News/News";
 import Music from "./Components/Navbar/Music/Music";
 import Settings from "./Components/Navbar/Settings/Settings";
@@ -30,6 +30,7 @@ class App extends React.Component<any, any> {
                         <Navbar/>
                         <div className={'app-wrapper-content'}>
                             <Routes>
+                                <Route path={'/'} element={<Navigate to={'/login'}/>}/>
                                 <Route path="/login" element={<LoginPageContainer/>}/>
                                 <Route path="/profile" element={<ProfileContainer/>}>
                                     <Route path=":userId" element={<ProfileContainer/>}/>

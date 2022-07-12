@@ -1,4 +1,4 @@
-import classes from "./Users.module.css";
+import classes from "./Paginator.module.css"
 import React, {useState} from "react";
 
 
@@ -21,13 +21,15 @@ export const Paginator: React.FC<PropsType> = ({currentPage, onChangeCurrentPage
 
     return (
         <div className={classes.paginator}>
-            {portionNumber > 1 && <button onClick={() => setPortionNumber(portionNumber - 1)}>Prev</button>}
+            {portionNumber > 1 && <div className={classes.pageButtonLeft} onClick={() =>
+                setPortionNumber(portionNumber - 1)}></div>}
             {pages.filter(p => p >= leftPortionNumber && p <= rightPortionNumber)
                 .map(p => <span key={p}
                                 className={currentPage === p ? classes.currentPage : classes.defaultPageStyle}
                                 onClick={() => changeCurrentPageHandler(p)}>
                 {p}</span>)}
-            {portionNumber < portionCount && <button onClick={() => setPortionNumber(portionNumber + 1)}>Next</button>}
+            {portionNumber < portionCount && <div className={classes.pageButtonRight} onClick={() =>
+                setPortionNumber(portionNumber + 1)}></div>}
         </div>
     )
 }

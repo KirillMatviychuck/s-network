@@ -1,0 +1,73 @@
+.paginator {
+    display: flex;
+    width: 190px;
+    justify-content: space-between;
+}
+
+.pageButtonRight {
+    justify-self: center;
+    align-self: center;
+    width: 15px;
+    height: 4px;
+    border-radius: 4px ;
+    background-color: #000;
+    position: relative;
+}
+
+.pageButtonRight:after {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 4px;
+    background-color: #000;
+    transform: rotate(45deg);
+    position: absolute;
+    right: -3px;
+    bottom: 2px;
+}
+
+.pageButtonRight:before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 4px;
+    background-color: #000;
+    transform: rotate(-45deg);
+    position: absolute;
+    right: -3px;
+    bottom: -2px;
+}
+
+.pageButtonLeft {
+    justify-self: center;
+    align-self: center;
+    width: 15px;
+    height: 4px;
+    border-radius: 4px ;
+    background-color: #000;
+    position: relative;
+}
+
+.pageButtonLeft:after {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 4px;
+    background-color: #000;
+    transform: rotate(-45deg);
+    position: absolute;
+    right: 7px;
+    bottom: 2px;
+}
+
+.pageButtonLeft:before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 4px;
+    background-color: #000;
+    transform: rotate(45deg);
+    position: absolute;
+    right: 7px;
+    bottom: -2px;
+}
