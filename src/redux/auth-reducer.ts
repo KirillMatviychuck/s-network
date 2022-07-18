@@ -1,6 +1,5 @@
 import {headerAPI} from "../api/api";
-import {Dispatch} from "redux";
-import {AppActionType, AppThunkType} from "./store-redux";
+import {AppThunkType} from "./store-redux";
 
 const initialState: AuthInitialStateType = {
     id: null,
