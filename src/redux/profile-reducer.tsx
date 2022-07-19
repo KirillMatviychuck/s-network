@@ -1,5 +1,4 @@
 import {v1} from "uuid";
-import {Dispatch} from "redux";
 import {profileAPI} from "../api/api";
 import {AppThunkType} from "./store-redux";
 
@@ -15,7 +14,8 @@ let initialState: ProfileInitialStateType = {
     status: ""
 }
 
-const profileReducer = (state: ProfileInitialStateType = initialState, action: ProfileActionType): ProfileInitialStateType => {
+const profileReducer = (state: ProfileInitialStateType = initialState, action: ProfileActionType)
+    : ProfileInitialStateType => {
     switch (action.type) {
         case 'PROFILE/ADD-POST':
             return {
@@ -29,6 +29,8 @@ const profileReducer = (state: ProfileInitialStateType = initialState, action: P
             return {...state, profile: action.profile}
         case 'PROFILE/SET-USER-STATUS':
             return {...state, status: action.status}
+        case 'PROFILE/SAVE-PHOTOS-SUCCESS':
+            return {...state, profile: {...state.profile, photos: action.photos}}
         default:
             return state;
     }
@@ -39,6 +41,8 @@ export const addPostAC = () => ({type: 'PROFILE/ADD-POST'} as const)
 export const updateNewPostTextAC = (text: string) => ({type: 'PROFILE/UPDATE-NEW-POST-TEXT', newText: text} as const)
 export const userProfileAC = (profile: UserProfileType) => ({type: 'PROFILE/SET-USER-PROFILE-TYPE', profile} as const)
 export const setUserStatus = (status: string) => ({type: 'PROFILE/SET-USER-STATUS', status} as const)
+export const savePhotoSuccess = (photos: {small: string | null, large: string | null}) =>
+    ({type: 'PROFILE/SAVE-PHOTOS-SUCCESS', photos} as const)
 
 // Thunks
 export const setUserProfile = (userId: number): AppThunkType => async (dispatch) => {
@@ -53,6 +57,11 @@ export const updateStatus = (status: string): AppThunkType => async (dispatch) =
     await profileAPI.updateStatus(status)
     dispatch(setUserStatus(status))
 }
+export const savePhoto = (file: any): AppThunkType => async (dispatch) => {
+    const data = await profileAPI.savePhoto(file)
+    debugger
+    dispatch(savePhotoSuccess(data.data.photos))
+}
 
 //Types
 type UserProfileContactsType = {
@@ -66,13 +75,13 @@ type UserProfileContactsType = {
     mainLink: string
 }
 export type UserProfileType = {
-    aboutMe: string
-    contacts: UserProfileContactsType
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    userId: number
-    photos: {
+    aboutMe?: string
+    contacts?: UserProfileContactsType
+    lookingForAJob?: boolean
+    lookingForAJobDescription?: string
+    fullName?: string
+    userId?: number
+    photos?: {
         small: string | null
         large: string | null
     }
@@ -88,6 +97,7 @@ export type ProfileActionType =
     | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof userProfileAC>
     | ReturnType<typeof setUserStatus>
+    | ReturnType<typeof savePhotoSuccess>
 
 
 export default profileReducer;

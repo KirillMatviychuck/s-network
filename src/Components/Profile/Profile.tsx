@@ -9,12 +9,14 @@ type ProfilePropsType = {
     userProfile: UserProfileType
     status: string
     updateStatus: (status: string) => (dispatch: Dispatch) => void
+    isOwner: boolean
+    savePhoto: any
 }
 
-const Profile: React.FC<ProfilePropsType> = ({userProfile, status, updateStatus}) => {
+const Profile: React.FC<ProfilePropsType> = ({userProfile, status, updateStatus, isOwner, savePhoto}) => {
     return (
         <div className={classNew.content}>
-            <ProfileInfo userProfile={userProfile} status={status} updateStatus={updateStatus} />
+            <ProfileInfo userProfile={userProfile} status={status} updateStatus={updateStatus} isOwner={isOwner} savePhoto={savePhoto}/>
             <MyPostsContainer />
         </div>
     )
