@@ -1,28 +1,32 @@
 .backgroundMain {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   height: 100vh;
   width: 100%;
-  background-color:  gray;
+  background-color: #fafafb;
 }
 
 .app-wrapper {
   font-family: Verdana , sans-serif;
-  margin: 0px auto;
+  margin: 0 auto;
   display: grid;
-  width: 1200px;
+
+  width: 70%;
+  min-height: 95%;
 
   grid-template-areas:
     "h h"
     "n c";
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
-  grid-gap: 10px;
+  grid-gap: 20px;
 }
 
 .app-wrapper-content {
   grid-area: c;
-  background-color: rgb(51, 182, 177);
-  border-radius: 10px;
+  background: #fff;
+  transition: all .45s ease 0s;
+  box-shadow: 0 0 20px 0 rgb(44 101 144 / 10%);
+  border-radius: 5px;
 }
 

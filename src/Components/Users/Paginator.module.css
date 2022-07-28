@@ -1,7 +1,12 @@
 .paginator {
     display: flex;
-    width: 190px;
+    width: 240px;
     justify-content: space-between;
+    font-size: 17px;
+    font-family: "Montserrat",sans-serif;
+    font-weight: 500;
+    color: #777d74;
+    cursor: pointer;
 }
 
 .pageButtonRight {
@@ -70,4 +75,31 @@
     position: absolute;
     right: 7px;
     bottom: -2px;
+}
+
+.defaultPageStyle {
+    margin: 0;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    width: 15px;
+    height: 15px;
+}
+
+.currentPage {
+    margin: 0;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 15px;
+    height: 15px;
+    background-color: #50b5ff;
+    color: #fff;
+    border-radius: 100px;
+    cursor: default;
 }

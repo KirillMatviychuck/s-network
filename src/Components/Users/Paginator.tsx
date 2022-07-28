@@ -23,10 +23,10 @@ export const Paginator: React.FC<PropsType> = ({currentPage, onChangeCurrentPage
         <div className={classes.paginator}>
             {portionNumber > 1 && <div className={classes.pageButtonLeft} onClick={() => setPortionNumber(portionNumber - 1)}></div>}
             {pages.filter(p => p >= leftPortionNumber && p <= rightPortionNumber)
-                .map(p => <span key={p}
+                .map(p => <p key={p}
                                 className={currentPage === p ? classes.currentPage : classes.defaultPageStyle}
                                 onClick={() => changeCurrentPageHandler(p)}>
-                {p}</span>)}
+                {p}</p>)}
             {portionNumber < portionCount && <div className={classes.pageButtonRight} onClick={() => setPortionNumber(portionNumber + 1)}></div>}
         </div>
     )

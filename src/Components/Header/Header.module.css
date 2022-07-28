@@ -1,8 +1,10 @@
 .header {
     grid-area: h;
-    background-color: rgb(236, 221, 221);
+    background: #fff;
+    transition: all .45s ease 0s;
+    box-shadow: 0 0 20px 0 rgb(44 101 144 / 10%);
+    border-radius: 5px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    border-radius: 10px;
 }
 
 .flexContainer {

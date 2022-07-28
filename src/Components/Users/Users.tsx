@@ -32,21 +32,23 @@ const Users: React.FC<PropsForUsersType> = ({
 
     return (
         <div className={classes.wrapper}>
-            {isFetching ? <Preloader/> : null}
-
-            <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage} onChangeCurrentPage={onChangeCurrentPage}/>
-            {
-                users.map(u => <User key={u.id}
-                                     userId={u.id}
-                                     follow={follow}
-                                     unfollow={unfollow}
-                                     toggleInProgress={toggleInProgress}
-                                     isFollowed={u.followed}
-                                     name={u.name}
-                                     status={u.status}
-                                     smallPhoto={u.photos.small}/>)
-            }
-
+            <div className={classes.usersBlock}>
+                {
+                    users.map(u => <User key={u.id}
+                                         userId={u.id}
+                                         follow={follow}
+                                         unfollow={unfollow}
+                                         toggleInProgress={toggleInProgress}
+                                         isFollowed={u.followed}
+                                         name={u.name}
+                                         status={u.status}
+                                         smallPhoto={u.photos.small}/>)
+                }
+            </div>
+            <div className={classes.paginatorBlock}>
+                <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage}
+                           onChangeCurrentPage={onChangeCurrentPage}/>
+            </div>
         </div>
     )
 }

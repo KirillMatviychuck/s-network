@@ -6,33 +6,35 @@ function Navbar() {
     return (
         <nav className={classNew.nav}>
             <div className={classNew.wrapperForNav}>
-                <div>
-                    <img className={classNew.avatar}
-                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0FDoE7hj3aGSQLna7G3lQMOh46yme5fUbZ4PDCrKBLu_mIgX48kRXnamuL77XyIYnNho&usqp=CAU"
-                         alt="avatar"/>
-                </div>
-                <div className={classNew.item}>
-                    <NavLink to='/profile'
-                             className={({isActive}) => isActive ? classNew.activeLink : classNew.defaultClass}> Profile</NavLink>
-                </div>
-                <div className={classNew.item}>
-                    <NavLink to='/dialogs'
-                             className={({isActive}) => isActive ? classNew.activeLink : classNew.defaultClass}>Dialogs</NavLink>
-                </div>
-                <div className={classNew.item}>
-                    <NavLink to='/news'
-                             className={({isActive}) => isActive ? classNew.activeLink : classNew.defaultClass}>News</NavLink>
-                </div>
-                <div className={classNew.item}>
-                    <NavLink to='/music'
-                             className={({isActive}) => isActive ? classNew.activeLink : classNew.defaultClass}> Music</NavLink>
-                </div>
-                <div className={classNew.item}>
-                    <NavLink to='/settings'
-                             className={({isActive}) => isActive ? classNew.activeLink : classNew.defaultClass}>Settings</NavLink>
+                <div className={classNew.itemsBlock}>
+                    <div className={classNew.item}>
+                        <NavLink to='/profile'
+                                 className={({isActive}) => isActive ? classNew.activeLink : classNew.defaultClass}> Profile</NavLink>
+                    </div>
+                    <div className={classNew.item}>
+                        <NavLink to='/dialogs'
+                                 className={({isActive}) => isActive ? classNew.activeLink : classNew.defaultClass}>Dialogs</NavLink>
+                    </div>
+                    <div className={classNew.item}>
+                        <NavLink to='/news'
+                                 className={({isActive}) => isActive ? classNew.activeLink : classNew.defaultClass}>News</NavLink>
+                    </div>
+                    <div className={classNew.item}>
+                        <NavLink to='/music'
+                                 className={({isActive}) => isActive ? classNew.activeLink : classNew.defaultClass}> Music</NavLink>
+                    </div>
+                    <div className={classNew.item}>
+                        <NavLink to='/settings'
+                                 className={({isActive}) => isActive ? classNew.activeLink : classNew.defaultClass}>Settings</NavLink>
+                    </div>
+                    <div className={classNew.item}>
+                        <NavLink to='/friends'
+                                 className={({isActive}) => isActive ? classNew.activeLink : classNew.defaultClass}>Find
+                            friend</NavLink>
+                    </div>
                 </div>
                 <div className={classNew.friendsBlock}>
-                    <NavLink to={'/friends'} className={classNew.friendsHeader}>My Friends</NavLink>
+                    <div className={classNew.friendsHeader}>My Friends</div>
                     <div className={classNew.friendsList}>
                         <div className={classNew.friendAvatar}><img
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlH4r7TmLxm9P8JI9uSbuO94smIep3L1sStg&usqp=CAU"

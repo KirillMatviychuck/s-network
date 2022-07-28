@@ -1,10 +1,11 @@
 .nav {
-    font-family: Centaur, sans-serif;
-    font-size: 1.6em;
-    font-weight: bold;
+    height: 70%;
+    width: 200px;
     grid-area: n;
-    background-color: rgb(236, 221, 221);
-    border-radius: 10px;
+    background: #fff;
+    transition: all .45s ease 0s;
+    box-shadow: 0 0 20px 0 rgb(44 101 144 / 10%);
+    border-radius: 5px;
 }
 
 .wrapperForNav {
@@ -13,11 +14,22 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.item {
+    font-size: 14px;
+    font-family: "Montserrat",sans-serif;
+    font-weight: 500;
+    padding: 15px;
+    line-height: 18px;
+    display: flex;
     align-items: center;
+    border-radius: 5px;
+    width: 100%;
 }
 
 .defaultClass {
-    color: #353e49;
+    color: #777d74;
 }
 
 .nav a:link {
@@ -35,6 +47,7 @@
 }
 
 .friendsBlock {
+    margin-top: 20px;
     height: 260px;
     width: 100%;
 }
@@ -42,6 +55,8 @@
 .friendsHeader {
     padding-left: 45px;
     color: rgb(140, 38, 199);
+    margin-left: 10px;
+    cursor: default;
 }
 
 .friendsList {

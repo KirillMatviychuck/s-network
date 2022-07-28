@@ -1,12 +1,21 @@
+.usersBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .userWrapper {
     margin: 10px;
     padding: 10px;
-    width: 600px;
+    width: 345px;
     display: grid;
     grid-template-columns: 90px 1fr;
     grid-template-areas: 'ava user'
                          'follow user';
-
+    background: #fff;
+    transition: all .45s ease 0s;
+    box-shadow: 0 0 20px 0 rgb(44 101 144 / 10%);
+    border-radius: 5px;
 }
 
 .avatarArea {
@@ -20,12 +29,12 @@
 .userArea {
     font-family: "Times New Roman", sans-serif;
     color: #353e49;
-    border: 1px #353e49 solid;
+    width: 250px;
     border-radius: 10px;
     grid-area: user;
     display: grid;
-    grid-template-areas: 'n c'
-                         's c';
+    grid-template-areas: 'n n'
+                         's s';
     justify-content: space-between;
 }
 
@@ -39,9 +48,9 @@
     color: white;
     width: 70px;
     height: 25px;
-    border: 1px #353e49 solid;
+    border: 1px #50b5ff solid;
     border-radius: 5px;
-    background-color: #353e49;
+    background-color: #50b5ff;
     letter-spacing: 1px;
 }
 
@@ -67,11 +76,4 @@
     font-style: italic;
     grid-area: s;
     padding-left: 10px;
-}
-
-.userLocation {
-    font-size: 1.2em;
-    font-weight: bold;
-    grid-area: c;
-    width: 80px;
 }

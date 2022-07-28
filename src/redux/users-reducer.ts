@@ -3,8 +3,8 @@ import {AppThunkType} from "./store-redux";
 
 const initialState: UsersInitialStateType = {
     users: [],
-    pageSize: 4,
-    totalUsersCount: 120,
+    pageSize: 8,
+    totalUsersCount: 400,
     currentPage: 1,
     isFetching: false,
     toggleInProgress: []

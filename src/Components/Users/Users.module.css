@@ -1,20 +1,22 @@
 .wrapper {
+    height: 612px;
     padding: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
-.currentPage {
-    font-weight: bold;
-    cursor: pointer;
+.paginatorBlock {
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
-.defaultPageStyle {
-    margin: 2px;
-    cursor: pointer;
+.usersBlock {
+    height: 612px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
-
-.currentPage {
-    margin: 2px;
-}
-
