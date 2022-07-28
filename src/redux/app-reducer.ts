@@ -23,7 +23,6 @@ export const initializeApp = (): AppThunkType => async (dispatch) => {
         await dispatch(authMe())
         dispatch(initializeAC())
     } catch (error: any) {
-        debugger
         console.warn(`${error.message}`)
     } finally {
         dispatch(initializeAC())

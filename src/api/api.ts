@@ -1,13 +1,5 @@
 import axios from "axios";
 
-export type LoginResponseType = {
-    resultCode: number
-    messages: Array<string>,
-    data: {
-        userId: number
-    }
-}
-
 export const instance = axios.create({
     baseURL: "https://social-network.samuraijs.com/api/1.0/",
     withCredentials: true,
@@ -35,7 +27,8 @@ export const usersAPI = {
 export const headerAPI = {
     authMe() {
         return instance.get(`auth/me`)
-            .then(response => response.data)
+            .then(response => response.data
+    )
     },
     login(email: string, password: string, rememberMe: boolean = false) {
         return instance.post<LoginResponseType>(`auth/login`, {email, password, rememberMe})
@@ -75,7 +68,36 @@ export const profileAPI = {
             }
         })
             .then(res => res.data)
+    },
+    updateProfileInfo(profileInfo: updateProfileInfoModelType) {
+        return instance.put('profile', profileInfo)
+            .then(res => res.data)
     }
 }
 
+// Types
+export type LoginResponseType = {
+    resultCode: number
+    messages: Array<string>,
+    data: {
+        userId: number
+    }
+}
+export type updateProfileInfoModelType = {
+    userId: number
+    aboutMe: string
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: {
+        github: string | null
+        vk: string | null
+        facebook: string | null
+        instagram: string | null
+        twitter: string | null
+        website: string | null
+        youtube: string | null
+        mainLink: string | null
+    }
+}
 

@@ -13,6 +13,7 @@
     grid-template-areas: 'ava user'
                          'follow user';
     background: #fff;
+    border: 1px solid #dedcdc;
     transition: all .45s ease 0s;
     box-shadow: 0 0 20px 0 rgb(44 101 144 / 10%);
     border-radius: 5px;

@@ -25,7 +25,7 @@ export const setAuthUserData = (id: number | null, login: string | null, email: 
 export const authMe = (): AppThunkType => async (dispatch) => {
     const data = await headerAPI.authMe()
     if (data.resultCode === 0) {
-        let {id, login, email} = data.data
+        const {id, login, email} = data.data
         dispatch(setAuthUserData(id, login, email, true))
     }
 }

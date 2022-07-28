@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {profileAPI} from "../api/api";
+import {profileAPI, updateProfileInfoModelType} from "../api/api";
 import {AppThunkType} from "./store-redux";
 
 let initialState: ProfileInitialStateType = {
@@ -24,7 +24,7 @@ const profileReducer = (state: ProfileInitialStateType = initialState, action: P
                 newPostText: ''
             }
         case 'PROFILE/UPDATE-NEW-POST-TEXT':
-            return { ...state, newPostText: action.newText }
+            return {...state, newPostText: action.newText}
         case 'PROFILE/SET-USER-PROFILE-TYPE':
             return {...state, profile: action.profile}
         case 'PROFILE/SET-USER-STATUS':
@@ -41,7 +41,7 @@ export const addPostAC = () => ({type: 'PROFILE/ADD-POST'} as const)
 export const updateNewPostTextAC = (text: string) => ({type: 'PROFILE/UPDATE-NEW-POST-TEXT', newText: text} as const)
 export const userProfileAC = (profile: UserProfileType) => ({type: 'PROFILE/SET-USER-PROFILE-TYPE', profile} as const)
 export const setUserStatus = (status: string) => ({type: 'PROFILE/SET-USER-STATUS', status} as const)
-export const savePhotoSuccess = (photos: {small: string | null, large: string | null}) =>
+export const savePhotoSuccess = (photos: { small: string | null, large: string | null }) =>
     ({type: 'PROFILE/SAVE-PHOTOS-SUCCESS', photos} as const)
 
 // Thunks
@@ -61,6 +61,12 @@ export const savePhoto = (file: any): AppThunkType => async (dispatch) => {
     const data = await profileAPI.savePhoto(file)
     debugger
     dispatch(savePhotoSuccess(data.data.photos))
+}
+export const updateProfileInfo = (profile: updateProfileInfoModelType): AppThunkType => async (dispatch) => {
+    const data = await profileAPI.updateProfileInfo(profile)
+    if (data.resultCode === 0) {
+        dispatch(setUserProfile(profile.userId))
+    }
 }
 
 //Types
@@ -86,6 +92,7 @@ export type UserProfileType = {
         large: string | null
     }
 }
+
 export type ProfileInitialStateType = {
     posts: Array<{ id: string, post: string, likesCount: number }>
     newPostText: string
