@@ -1,5 +1,5 @@
 import {usersAPI} from "../api/api";
-import {AppThunkType} from "./store-redux";
+import {AppThunk} from "../store/store-redux";
 
 const initialState: UsersInitialStateType = {
     users: [],
@@ -50,20 +50,20 @@ export const changeToggleProgress = (status: boolean, userId: number) =>
     ({type: 'USERS/CHANGE-TOGGLE-PROGRESS', status, userId} as const)
 
 // Thunk creators
-export const getUsers = (pageSize: number, currentPage: number): AppThunkType => async (dispatch) => {
+export const getUsers = (pageSize: number, currentPage: number): AppThunk => async (dispatch) => {
     dispatch(toggleIsFetching(true))
     const data = await usersAPI.getUsers(pageSize, currentPage)
     dispatch(setCurrentPage(currentPage))
     dispatch(setUsers(data.items))
     dispatch(toggleIsFetching(false))
 }
-export const follow = (userId: number): AppThunkType => async (dispatch) => {
+export const follow = (userId: number): AppThunk => async (dispatch) => {
     dispatch(changeToggleProgress(true, userId))
     const data = await usersAPI.followUser(userId)
     if (data.resultCode === 0) dispatch(followSuccess(userId))
     dispatch(changeToggleProgress(false, userId))
 }
-export const unfollow = (userId: number): AppThunkType => async (dispatch) => {
+export const unfollow = (userId: number): AppThunk => async (dispatch) => {
     dispatch(changeToggleProgress(true, userId))
     const data = await usersAPI.unfollowUser(userId)
     if (data.resultCode === 0) dispatch(unfollowSuccess(userId))

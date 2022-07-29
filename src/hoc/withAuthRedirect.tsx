@@ -1,9 +1,9 @@
 import React from "react";
 import {Navigate} from "react-router-dom";
 import {connect} from "react-redux";
-import {AppStoreType} from "../redux/store-redux";
+import {AppRootStateType} from "../store/store-redux";
 
-const mapStateToProps = (state: AppStoreType) => ({
+const mapStateToProps = (state: AppRootStateType) => ({
     isAuth: state.authorization.isAuth
 })
 

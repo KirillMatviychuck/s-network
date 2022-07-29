@@ -1,7 +1,7 @@
 import Dialogs from "./Dialogs";
 import {addMessageAC, DialogsInitialStateType, newChatTextAC} from "../../redux/dialogs-reducer";
 import {connect} from "react-redux";
-import {AppActionType, AppStoreType} from "../../redux/store-redux";
+import {AppActionType, AppRootStateType} from "../../store/store-redux";
 import {compose, Dispatch} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
@@ -14,7 +14,7 @@ type MapDispatchToPropsType = {
 }
 export type PropsForDialogsType = MapDispatchToPropsType & MapStateToPropsType
 
-const mapStateToProps = (state: AppStoreType): MapStateToPropsType => {
+const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
     return {
         dialogsPage: state.dialogsPage
     }

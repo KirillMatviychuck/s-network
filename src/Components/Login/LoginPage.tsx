@@ -1,11 +1,6 @@
 import {Field, Form, Formik} from "formik";
 import React from "react";
 import classes from './LoginPage.module.css'
-import {Dispatch} from "redux";
-
-type PropsType = {
-    login: (email: string, password: string, rememberMe: boolean, setStatus: () => void) => (dispatch: Dispatch) => void
-}
 
 const LoginPage: React.FC<PropsType> = ({login}) => {
 
@@ -52,5 +47,10 @@ const LoginPage: React.FC<PropsType> = ({login}) => {
             </Formik>
     )
 }
+
+type PropsType = {
+    login: (email: string, password: string, rememberMe: boolean, setStatus: () => void) => void
+}
+
 
 export {LoginPage}

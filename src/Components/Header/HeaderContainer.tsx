@@ -1,19 +1,16 @@
-import React from "react";
+import React, {useCallback} from "react";
 import Header from "./Header";
-import {connect} from "react-redux";
 import {logout} from "../../redux/auth-reducer";
-import {AppStoreType} from "../../redux/store-redux";
+import {useAppDispatch, useAppSelector} from "../../store/hooks";
 
-class HeaderContainer extends React.Component<any, any> {
+const HeaderContainer = () => {
+    const dispatch = useAppDispatch()
+    const userLogin = useAppSelector(state => state.authorization.login)
+    const isAuth = useAppSelector(state => state.authorization.isAuth)
 
-    render() {
-        return <Header login={this.props.login} logout={this.props.logout} isAuth={this.props.isAuth}/>
-    }
+    const logoutUser = useCallback(() => dispatch(logout()), [dispatch])
+
+    return <Header userLogin={userLogin} logoutUser={logoutUser} isAuth={isAuth}/>
 }
 
-const mapStateToProps = (state: AppStoreType) => ({
-    login: state.authorization.login,
-    isAuth: state.authorization.isAuth
-})
-
-export default connect(mapStateToProps, {logout})(HeaderContainer);
+export default HeaderContainer;

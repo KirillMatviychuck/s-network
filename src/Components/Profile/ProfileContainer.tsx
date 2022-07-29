@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {AppStoreType} from "../../redux/store-redux";
+import {AppRootStateType} from "../../store/store-redux";
 import {getUserStatus, savePhoto, setUserProfile, updateProfileInfo, updateStatus} from "../../redux/profile-reducer";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
@@ -52,7 +52,7 @@ class ProfileContainer extends React.Component<any, any> {
     }
 }
 
-const mapStateToProps = (state: AppStoreType) => ({
+const mapStateToProps = (state: AppRootStateType) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     myId: state.authorization.id

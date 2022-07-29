@@ -1,5 +1,5 @@
 import {headerAPI} from "../api/api";
-import {AppThunkType} from "./store-redux";
+import {AppThunk} from "../store/store-redux";
 
 const initialState: AuthInitialStateType = {
     id: null,
@@ -22,7 +22,7 @@ export const setAuthUserData = (id: number | null, login: string | null, email: 
     ({type: 'AUTH/SET_USER_DATA', payload: {id, login, email, isAuth}} as const)
 
 // Thunks
-export const authMe = (): AppThunkType => async (dispatch) => {
+export const authMe = (): AppThunk => async (dispatch) => {
     const data = await headerAPI.authMe()
     if (data.resultCode === 0) {
         const {id, login, email} = data.data
@@ -30,13 +30,13 @@ export const authMe = (): AppThunkType => async (dispatch) => {
     }
 }
 export const login = (email: string, password: string, rememberMe: boolean = false, setStatus: (message: string) =>
-    void): AppThunkType =>
+    void): AppThunk =>
     async (dispatch) => {
         const data = await headerAPI.login(email, password, rememberMe)
         if (data.resultCode === 0) dispatch(authMe() as any)
         else setStatus(data.messages[0])
     }
-export const logout = (): AppThunkType => async (dispatch) => {
+export const logout = (): AppThunk => async (dispatch) => {
     const data = await headerAPI.logout()
     if (data.resultCode === 0) dispatch(setAuthUserData(null, null, null, false))
 }

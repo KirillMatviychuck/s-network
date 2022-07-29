@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 import {profileAPI, updateProfileInfoModelType} from "../api/api";
-import {AppThunkType} from "./store-redux";
+import {AppThunk} from "../store/store-redux";
 
 let initialState: ProfileInitialStateType = {
     posts: [
@@ -45,24 +45,24 @@ export const savePhotoSuccess = (photos: { small: string | null, large: string |
     ({type: 'PROFILE/SAVE-PHOTOS-SUCCESS', photos} as const)
 
 // Thunks
-export const setUserProfile = (userId: number): AppThunkType => async (dispatch) => {
+export const setUserProfile = (userId: number): AppThunk => async (dispatch) => {
     const data = await profileAPI.currentUserProfile(userId)
     dispatch(userProfileAC(data))
 }
-export const getUserStatus = (userId: string): AppThunkType => async (dispatch) => {
+export const getUserStatus = (userId: string): AppThunk => async (dispatch) => {
     const data = await profileAPI.getUserStatus(userId)
     dispatch(setUserStatus(data))
 }
-export const updateStatus = (status: string): AppThunkType => async (dispatch) => {
+export const updateStatus = (status: string): AppThunk => async (dispatch) => {
     await profileAPI.updateStatus(status)
     dispatch(setUserStatus(status))
 }
-export const savePhoto = (file: any): AppThunkType => async (dispatch) => {
+export const savePhoto = (file: any): AppThunk => async (dispatch) => {
     const data = await profileAPI.savePhoto(file)
     debugger
     dispatch(savePhotoSuccess(data.data.photos))
 }
-export const updateProfileInfo = (profile: updateProfileInfoModelType): AppThunkType => async (dispatch) => {
+export const updateProfileInfo = (profile: updateProfileInfoModelType): AppThunk => async (dispatch) => {
     const data = await profileAPI.updateProfileInfo(profile)
     if (data.resultCode === 0) {
         dispatch(setUserProfile(profile.userId))

@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {AppStoreType} from "../../redux/store-redux";
+import {AppRootStateType} from "../../store/store-redux";
 import {follow, getUsers, unfollow} from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
@@ -27,7 +27,7 @@ class UsersClass extends React.Component<any, any> {
     }
 }
 
-const mapStateToProps = (state: AppStoreType) => {
+const mapStateToProps = (state: AppRootStateType) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,

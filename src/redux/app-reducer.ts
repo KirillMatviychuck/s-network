@@ -1,5 +1,5 @@
 import {authMe} from "./auth-reducer";
-import {AppThunkType} from "./store-redux";
+import {AppThunk} from "../store/store-redux";
 
 const initialState = {
     initialized: false
@@ -18,7 +18,7 @@ export const appReducer = (state: AuthInitialStateType = initialState, action: A
 export const initializeAC = () => ({type: 'APP/INITIALIZED-SUCCESS'} as const)
 
 //thunks
-export const initializeApp = (): AppThunkType => async (dispatch) => {
+export const initializeApp = (): AppThunk => async (dispatch) => {
     try {
         await dispatch(authMe())
         dispatch(initializeAC())

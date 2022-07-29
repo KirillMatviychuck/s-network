@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import Navbar from "./Components/Navbar/Navbar";
-import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import News from "./Components/Navbar/News/News";
 import Music from "./Components/Navbar/Music/Music";
 import Settings from "./Components/Navbar/Settings/Settings";
@@ -10,18 +10,20 @@ import HeaderContainer from "./Components/Header/HeaderContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
 import LoginPageContainer from "./Components/Login/LoginPageContainer";
-import {connect} from "react-redux";
-import {AppStoreType} from "./redux/store-redux";
 import {Preloader} from "./Components/common/Preloader";
 import {initializeApp} from "./redux/app-reducer";
+import {useAppDispatch, useAppSelector} from "./store/hooks";
 
 
-class App extends React.Component<any, any> {
-    componentDidMount() {
-        this.props.initializeApp()
-    }
-    render() {
-        if (!this.props.initialized) return <Preloader />
+const App = () => {
+    const dispatch = useAppDispatch()
+    const initialized = useAppSelector(state => state.app.initialized)
+
+    useEffect(() => {
+        dispatch(initializeApp())
+    },[dispatch])
+
+        if (!initialized) return <Preloader />
         return (
             <BrowserRouter>
                 <div className='backgroundMain'>
@@ -47,10 +49,6 @@ class App extends React.Component<any, any> {
             </BrowserRouter>
         );
     }
-}
 
-const mapStateToProps = (state: AppStoreType) => ({
-    initialized: state.app.initialized
-})
 
-export default connect(mapStateToProps, {initializeApp})(App);
+export default App;

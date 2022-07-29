@@ -1,15 +1,14 @@
 import React from "react";
 import classNew from './Header.module.css'
 import {NavLink} from "react-router-dom";
-import {Dispatch} from "redux";
 
 type HeaderPropsType = {
-    login: string
-    logout: () => (dispatch: Dispatch) => void
+    userLogin: string | null
+    logoutUser: () => void
     isAuth: boolean
 }
 
-const Header: React.FC<HeaderPropsType> = ({isAuth, login, logout}) => {
+const Header: React.FC<HeaderPropsType> = ({isAuth, userLogin, logoutUser}) => {
     return (
         <header className={classNew.header}>
             <div className={classNew.flexContainer}>
@@ -19,10 +18,10 @@ const Header: React.FC<HeaderPropsType> = ({isAuth, login, logout}) => {
                 </div>
                 <div className={classNew.authWindow}>
                     <div className={classNew.login}>
-                        {isAuth ? login : <NavLink to={'/login'}>Login</NavLink>}
+                        {isAuth ? userLogin : <NavLink to={'/login'}>Login</NavLink>}
                     </div>
                     <br/>
-                    {isAuth && <div className={classNew.logout} onClick={logout}>
+                    {isAuth && <div className={classNew.logout} onClick={logoutUser}>
                         Logout
                     </div>}
                 </div>

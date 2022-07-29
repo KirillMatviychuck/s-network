@@ -1,6 +1,6 @@
 import React from "react";
 import MyPosts from "./MyPosts";
-import {AppStoreType} from "../../../redux/store-redux";
+import {AppRootStateType} from "../../../store/store-redux";
 import {
     addPostAC,
     ProfileInitialStateType,
@@ -18,7 +18,7 @@ type MapDispatchToPropsType = {
 }
 export type PropsForProfileType = MapStateToPropsType & MapDispatchToPropsType
 
-const mapStateToProps = (state: AppStoreType): MapStateToPropsType => {
+const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
         return {
             profilePage: state.profilePage
         }

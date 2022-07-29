@@ -2,7 +2,7 @@ import React from "react";
 import classNew from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
 
-function Navbar() {
+const Navbar = () => {
     return (
         <nav className={classNew.nav}>
             <div className={classNew.wrapperForNav}>
