@@ -1,45 +1,80 @@
-.allDialogsDesktop {
+.allDialogsBlock {
+    height: 832px;
     font-size: 1.4em;
     color: #fff;
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr 2fr;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 3fr;
     grid-template-areas: 'users messages'
                          'users textArea';
 }
 
-.allDialogsUsers {
+.dialogUser {
+    min-width: 150px;
     grid-area: users;
     padding: 10px;
 }
 
-.allDialogsUsers a {
+.dialogUser a {
     color: rgb(3, 3, 3);
     text-decoration: none;
 }
 
-.allDialogsUsers a:link {
+.dialogUser a:link {
     text-decoration: none;
 }
 
-.allDialogsUsers a:hover {
+.dialogUser a:hover {
     color: rgb(38, 148, 199);
 }
 
-.allDialogsDesktop {
-    padding: 5px;
+.chatBlock {
+    grid-area: messages;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 500px;
+    margin: 10px 0 0 100px;
+    padding: 30px;
+    background: #fff;
+    transition: all .45s ease 0s;
+    box-shadow: 0 0 20px 0 rgb(44 101 144 / 10%);
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .allMessages {
-    grid-area: messages;
-    padding: 15px;
     color: #353e49;
 }
 
 .textAreaBlock {
-    margin-top: 20px;
+    margin: 10px 0 0 100px;
+    width: 80%;
+    height: 105px;
     grid-area: textArea;
+    display: flex;
+}
+
+.textAreaBlock textarea {
+    padding: 10px;
+    font-family: 'DM Sans', sans-serif;;
+    font-size: 15px;
+    width: 345px;
+    height: 70px;
+    resize: none;
+    outline: none;
+    border: 1px solid #e5e4e4;
+    background: #fff;
+    transition: all .45s ease 0s;
+    box-shadow: 0 0 20px 0 rgb(44 101 144 / 10%);
 }
 .chatButton {
-    margin: 0px;
+    margin: 25px 0 0 20px;
+    height: 30px;
+    width: 70px;
+    color: #fff;
+    background-color: #50b5ff;
+    cursor: pointer;
+    border: none;
+    outline: none;
 }

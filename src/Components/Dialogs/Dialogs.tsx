@@ -3,9 +3,10 @@ import classNew from './Dialogs.module.css'
 import DialogsUsers from "./DialogsUsers/DialogsUsers";
 import Messages from "./Messages/Messages";
 import {PropsForDialogsType} from "./DialogsContainer";
+import sendImage from '../../assets/button/send-pngrepo.png'
 
 
-const Dialogs: React.FC<PropsForDialogsType> = ({dialogsPage,onChangeChatArea,addMessage}) => {
+const Dialogs: React.FC<PropsForDialogsType> = ({dialogsPage, onChangeChatArea, addMessage}) => {
     let addNewUser = dialogsPage.users.map(t => <DialogsUsers key={t.id} id={t.id} name={t.name}/>)
     let addNewMessage = dialogsPage.messages.map(t => <Messages key={t.id} id={t.id} message={t.message}/>)
 
@@ -13,18 +14,24 @@ const Dialogs: React.FC<PropsForDialogsType> = ({dialogsPage,onChangeChatArea,ad
     const addMessageHandler = () => addMessage()
 
     return (
-        <div className={classNew.allDialogsDesktop}>
-            <div className={classNew.allDialogsUsers}>
+        <div className={classNew.allDialogsBlock}>
+            <div className={classNew.dialogUser}>
                 {addNewUser}
             </div>
-            <div className={classNew.allMessages}>
-                {addNewMessage}
+            <div className={classNew.chatBlock}>
+                <div className={classNew.allMessages}>
+                    {addNewMessage}
+                </div>
             </div>
             <div className={classNew.textAreaBlock}>
+                <div>
                 <textarea value={dialogsPage.newChatText} onChange={changeChatTextHandler}>
 
                 </textarea>
-                <div className={classNew.chatButton}> <button onClick={addMessageHandler}> Send </button> </div>
+                </div>
+                <div className={classNew.chatButtonBlock} onClick={addMessageHandler}>
+                    <button className={classNew.chatButton}>Send</button>
+                </div>
             </div>
         </div>
     )

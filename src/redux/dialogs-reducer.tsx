@@ -2,12 +2,9 @@ import {v1} from "uuid";
 
 const DialogsInitialState = {
         users: [
-            {id: v1(), name: 'Kirill'},
+            {id: v1(), name: 'Artem'},
             {id: v1(), name: 'Andrew'},
             {id: v1(), name: 'Olga'},
-            {id: v1(), name: 'Alina'},
-            {id: v1(), name: 'Sergey'},
-            {id: v1(), name: 'Igor'}
         ],
         messages: [
             {id: v1(), message: 'Hello how are you?'},

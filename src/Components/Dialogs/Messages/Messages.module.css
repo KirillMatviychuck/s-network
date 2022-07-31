@@ -1,0 +1,17 @@
+.chatBlock {
+    display: flex;
+}
+
+.message {
+    font-family: "Montserrat",sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    margin: 0 1.33rem 1.33rem 0.3rem;
+    clear: both;
+    word-break: break-word;
+    color: #fff;
+    background: #50b5ff;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px 0 #50b5ff;
+}

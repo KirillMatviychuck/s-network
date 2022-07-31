@@ -8,7 +8,7 @@ type PropsForMessagesPageTypes = {
 
 function Messages(props: PropsForMessagesPageTypes) {
     return (
-        <div>
+        <div className={classNew.chatBlock}>
             <div className={classNew.message}>{props.message}</div>
         </div>
     )
