@@ -1,22 +1,33 @@
 .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     grid-area: h;
     background: #fff;
     transition: all .45s ease 0s;
     box-shadow: 0 0 20px 0 rgb(44 101 144 / 10%);
     border-radius: 5px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: "Montserrat",sans-serif;
 }
 
-.flexContainer {
+.headerContainer {
     display: flex;
-    justify-content: center ;
+    justify-content: space-between;
+    justify-self: center;
+    width: 95%;
+}
+
+.leftSideContent {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
 }
 
 .header img {
     padding-right: 20px;
     border-radius: 100px;
-    height: 60px;
-    width: 70px;
+    height: 50px;
+    width: 60px;
 }
 
 .login {
@@ -30,12 +41,20 @@
 
 .authWindow {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    min-width: 200px;
 }
 
 .logout {
-    height: 60px;
-    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
     cursor: pointer;
 }
