@@ -1,5 +1,81 @@
+.mainWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat",sans-serif;
+    position: relative;
+}
+
 .mainWrap img {
     height: 100px;
     width: 100px;
     border-radius: 50px;
+    position: relative;
+    bottom: 18px;
+}
+
+.image {
+
+}
+
+.status {
+    font-size: 12px;
+    color: #5b626e;
+}
+
+.name {
+    margin: 10px 0 15px 0;
+    position: relative;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.name::after {
+    content: '';
+    position: absolute;
+    background-color: #5b626e;
+    width: 55px;
+    height: 1px;
+    left: 50%;
+    top: 35px;
+    transform: translate(-50%, 50%);
+}
+
+.addPhoto {
+    margin: 10px 0 10px 0;
+    height: 30px;
+    width: 30px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.addPhoto input {
+    display: none;
+    cursor: pointer;
+}
+
+.addPhoto {
+    cursor: pointer;
+}
+
+.profileInfo {
+
+}
+
+.editBtn button{
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    height: 25px;
+    width: 60px;
+    color: #fff;
+    background-color: #50b5ff;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    outline: none;
 }

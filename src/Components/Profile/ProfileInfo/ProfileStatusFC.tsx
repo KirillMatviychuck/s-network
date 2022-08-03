@@ -24,8 +24,8 @@ const ProfileStatusFC: React.FC<PropsType> = ({status, updateStatus}) => {
     return (
         <h3>
             {!editMode
-                ? <span className={classes.profileStatus}
-                        onDoubleClick={toggleEditModeHandler}>{status}</span>
+                ? <div className={classes.profileStatus}
+                        onDoubleClick={toggleEditModeHandler}>{status}</div>
                 : <input value={userStatus} onChange={changeUserStatusHandler} autoFocus
                          placeholder={'Write your status'} onBlur={toggleEditModeHandler}
                          type="text"/>}

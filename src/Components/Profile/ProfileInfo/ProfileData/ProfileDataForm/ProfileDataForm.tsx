@@ -40,30 +40,36 @@ const ProfileDataForm: React.FC<PropsType> = ({myId, updateProfileInfo, setEditM
 
             {({status, handleSubmit}) => (
                 <Form onSubmit={handleSubmit} className={classes.loginForm}>
-                    <label htmlFor="fullName">Name</label>
-                    <Field
-                        name="fullName"
-                        type="text"
-                    />
-                    <div className={classes.rememberMeBlock}>
-                        <label>
-                            <Field className={classes.rememberMe}
+                    <div className={classes.nameBlock}>
+                        <label htmlFor="fullName">Name</label>
+                        <Field
+                            className={classes.name}
+                            name="fullName"
+                            type="text"
+                        />
+                    </div>
+                    <div className={classes.lookingForAJobBlock}>
+                        <label>Do you looking for a job?
+                            <Field className={classes.lookingForAJob}
                                    name="lookingForAJob"
                                    type="checkbox"
                             />
-                            Do you looking for a job?</label>
+                            </label>
                     </div>
-                    <label htmlFor="lookingForAJobDescription">Description of the job you are looking for</label>
-                    <Field className={classes.rememberMe}
-                           name="lookingForAJobDescription"
-                           type="text"
-                    />
-                    <label htmlFor="aboutMe">About me</label>
-                    <Field className={classes.rememberMe}
-                           name="aboutMe"
-                           type="text"
-                    />
-
+                    <div className={classes.lookingForAJobDescriptionBlock}>
+                        <label htmlFor="lookingForAJobDescription">What job are you looking?</label>
+                        <Field className={classes.lookingForAJobDescription}
+                               name="lookingForAJobDescription"
+                               type="text"
+                        />
+                    </div>
+                    <div className={classes.aboutMeBlock}>
+                        <label htmlFor="aboutMe">About me</label>
+                        <Field className={classes.aboutMe}
+                               name="aboutMe"
+                               type="text"
+                        />
+                    </div>
                     <div className={classes.errorStatus}>{status}</div>
                     <button type="submit" className={classes.submitButton}>Confirm</button>
                 </Form>

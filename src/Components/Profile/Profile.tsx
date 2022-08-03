@@ -16,7 +16,15 @@ type ProfilePropsType = {
     updateProfileInfo: (profile: updateProfileInfoModelType) => (dispatch: Dispatch) => void
 }
 
-const Profile: React.FC<ProfilePropsType> = ({userProfile, status, updateStatus, isOwner, savePhoto, myId, updateProfileInfo}) => {
+const Profile: React.FC<ProfilePropsType> = ({
+                                                 userProfile,
+                                                 status,
+                                                 updateStatus,
+                                                 isOwner,
+                                                 savePhoto,
+                                                 myId,
+                                                 updateProfileInfo
+                                             }) => {
     return (
         <div className={classNew.content}>
             <ProfileInfo userProfile={userProfile}
@@ -26,7 +34,7 @@ const Profile: React.FC<ProfilePropsType> = ({userProfile, status, updateStatus,
                          savePhoto={savePhoto}
                          myId={myId}
                          updateProfileInfo={updateProfileInfo}/>
-            <MyPostsContainer />
+            <MyPostsContainer/>
         </div>
     )
 }
