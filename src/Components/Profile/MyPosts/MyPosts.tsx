@@ -6,7 +6,8 @@ import {PropsForProfileType} from "./MyPostsContainer";
 const MyPosts = React.memo((props: PropsForProfileType) => {
     console.log('2222')
     let displayNewPost = props.profilePage.posts.map(t => <Post key={t.id} message={t.post}
-                                                                 numberOfLikes={t.likesCount}/>)
+                                                                numberOfLikes={t.likesCount}
+                                                                profilePage={props.profilePage}/>)
 
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value

@@ -57,7 +57,7 @@ const ProfileDataForm: React.FC<PropsType> = ({myId, updateProfileInfo, setEditM
                             </label>
                     </div>
                     <div className={classes.lookingForAJobDescriptionBlock}>
-                        <label htmlFor="lookingForAJobDescription">What job are you looking?</label>
+                        <label htmlFor="lookingForAJobDescription">What is your job?</label>
                         <Field className={classes.lookingForAJobDescription}
                                name="lookingForAJobDescription"
                                type="text"

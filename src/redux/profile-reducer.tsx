@@ -5,9 +5,7 @@ import {AppThunk} from "../store/store-redux";
 let initialState: ProfileInitialStateType = {
     posts: [
         {id: v1(), post: 'my first post', likesCount: 5},
-        {id: v1(), post: 'nice I believe not last lol', likesCount: 17},
-        {id: v1(), post: 'I am believe in it too', likesCount: 6},
-        {id: v1(), post: 'What interesting movie do you know?', likesCount: 5},
+        {id: v1(), post: 'What interesting movie would you recommend me to watch?', likesCount: 17},
     ],
     newPostText: '',
     profile: null,
@@ -59,7 +57,6 @@ export const updateStatus = (status: string): AppThunk => async (dispatch) => {
 }
 export const savePhoto = (file: any): AppThunk => async (dispatch) => {
     const data = await profileAPI.savePhoto(file)
-    debugger
     dispatch(savePhotoSuccess(data.data.photos))
 }
 export const updateProfileInfo = (profile: updateProfileInfoModelType): AppThunk => async (dispatch) => {
