@@ -12,11 +12,15 @@ type PostTypes = {
 const Post = React.memo((props: PostTypes) => {
     return (
         <div className={classNew.item}>
-            <img
-                src={props.profilePage.profile?.photos?.small ? props.profilePage.profile?.photos?.small : '' }
-                alt="ava"/>
-            {props.message}
-            <div>
+            <div className={classNew.myPostImage}>
+                <img
+                    src={props.profilePage.profile?.photos?.small ? props.profilePage.profile?.photos?.small : ''}
+                    alt="ava"/>
+            </div>
+            <div className={classNew.myPostMessage}>
+                {props.message}
+            </div>
+            <div className={classNew.myPostLikes}>
                 <span>Likes: {props.numberOfLikes}</span>
             </div>
         </div>

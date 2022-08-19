@@ -55,7 +55,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
                 </div>
                 {/*<ProfileDataDefault userProfile={userProfile}/>*/}
                 <div className={classes.editBtn}>
-                    <button onClick={changeEditModeHandler}>Edit</button>
+                    {!editMode && <button onClick={changeEditModeHandler}>Edit</button>}
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@
     color: #353e49;
 }
 .loginWindow {
-    background-color: #50b5ff;
+    background-color: rgb(236, 221, 221);
     border-radius: 20px;
     display: flex;
     flex-direction: column;

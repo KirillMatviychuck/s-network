@@ -4,7 +4,6 @@ import Post from "./Post/Post";
 import {PropsForProfileType} from "./MyPostsContainer";
 
 const MyPosts = React.memo((props: PropsForProfileType) => {
-    console.log('2222')
     let displayNewPost = props.profilePage.posts.map(t => <Post key={t.id} message={t.post}
                                                                 numberOfLikes={t.likesCount}
                                                                 profilePage={props.profilePage}/>)
@@ -25,11 +24,11 @@ const MyPosts = React.memo((props: PropsForProfileType) => {
             <div className={classNew.postsEditor}>
                 <h3>New Post</h3>
                 <div>
-                    <textarea value={props.profilePage.newPostText} onChange={onChangeHandler}>
+                    <textarea className={classNew.myPostsTextArea} value={props.profilePage.newPostText} onChange={onChangeHandler}>
 
                     </textarea>
-                    <div>
-                        <button onClick={addPostHandler}>Add post</button>
+                    <div className={classNew.buttonBlock}>
+                        <button className={classNew.addPostButton} onClick={addPostHandler}>Add post</button>
                     </div>
                 </div>
             </div>

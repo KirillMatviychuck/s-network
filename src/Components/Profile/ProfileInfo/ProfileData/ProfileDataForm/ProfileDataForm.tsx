@@ -1,11 +1,16 @@
 import React from 'react';
 import {Field, Form, Formik} from "formik";
-import classes from "./ProfileDataForm.module.css";
+import classNew from "./ProfileDataForm.module.css";
 import {Dispatch} from "redux";
 import {updateProfileInfoModelType} from "../../../../../api/api";
 
 
 const ProfileDataForm: React.FC<PropsType> = ({myId, updateProfileInfo, setEditMode}) => {
+
+    const cancelButtonHandler = () => {
+
+    }
+
     return (
         <Formik
             initialValues={{
@@ -39,39 +44,42 @@ const ProfileDataForm: React.FC<PropsType> = ({myId, updateProfileInfo, setEditM
         >
 
             {({status, handleSubmit}) => (
-                <Form onSubmit={handleSubmit} className={classes.loginForm}>
-                    <div className={classes.nameBlock}>
-                        <label htmlFor="fullName">Name</label>
+                <Form onSubmit={handleSubmit} className={classNew.loginForm}>
+                    <div className={classNew.nameBlock}>
+                        <label htmlFor="fullName" className={classNew.label}>Name</label>
                         <Field
-                            className={classes.name}
+                            className={classNew.name}
                             name="fullName"
                             type="text"
                         />
                     </div>
-                    <div className={classes.lookingForAJobBlock}>
-                        <label>Do you looking for a job?
-                            <Field className={classes.lookingForAJob}
-                                   name="lookingForAJob"
-                                   type="checkbox"
-                            />
-                            </label>
+                    <div className={classNew.lookingForAJobBlock}>
+                        <label className={classNew.label}>Do you looking for a job?</label>
+                        <Field className={classNew.lookingForAJob}
+                               name="lookingForAJob"
+                               type="checkbox"
+                        />
+
                     </div>
-                    <div className={classes.lookingForAJobDescriptionBlock}>
-                        <label htmlFor="lookingForAJobDescription">What is your job?</label>
-                        <Field className={classes.lookingForAJobDescription}
+                    <div className={classNew.lookingForAJobDescriptionBlock}>
+                        <label htmlFor="lookingForAJobDescription" className={classNew.label}>What is your job?</label>
+                        <Field className={classNew.lookingForAJobDescription}
                                name="lookingForAJobDescription"
                                type="text"
                         />
                     </div>
-                    <div className={classes.aboutMeBlock}>
-                        <label htmlFor="aboutMe">About me</label>
-                        <Field className={classes.aboutMe}
+                    <div className={classNew.aboutMeBlock}>
+                        <label htmlFor="aboutMe" className={classNew.label}>About me</label>
+                        <Field className={classNew.aboutMe}
                                name="aboutMe"
                                type="text"
                         />
                     </div>
-                    <div className={classes.errorStatus}>{status}</div>
-                    <button type="submit" className={classes.submitButton}>Confirm</button>
+                    <div className={classNew.errorStatus}>{status}</div>
+                    <div className={classNew.buttons}>
+                        <button className={classNew.submitButton} type="submit">Confirm</button>
+                        <button className={classNew.cancelButton} onClick={cancelButtonHandler}>Cancel</button>
+                    </div>
                 </Form>
             )}
 

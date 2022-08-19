@@ -1,3 +1,43 @@
 .postsEditor {
     padding: 10px;
 }
+
+.posts {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+textarea {
+    padding: 10px;
+    border: 1px solid #878e9d;
+    font-family: 'DM Sans', sans-serif;;
+    font-size: 1em;
+    color: #252525;
+    background-color: inherit;
+    width: 350px;
+    height: 100px;
+    resize: none;
+    outline: none;
+}
+
+.addPostButton {
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 5px;
+    height: 25px;
+    width: 80px;
+    color: #fff;
+    background-color: #50b5ff;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.buttonBlock {
+    max-width: 372px;
+    display: flex;
+    justify-content: flex-end;
+}
