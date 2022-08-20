@@ -1,5 +1,5 @@
 import React, {useCallback} from "react";
-import classes from './LoginContainerPage.module.css'
+import classNew from './LoginContainerPage.module.css'
 import {LoginPage} from "./LoginPage";
 import {connect} from "react-redux";
 import {AppRootStateType} from "../../store/store-redux";
@@ -18,9 +18,10 @@ const LoginPageContainer = () => {
     if (isAuth) return <Navigate to={'/profile'}/>
 
     return (
-        <div className={classes.loginWrap}>
-            <div className={classes.loginWindow}>
-                <div className={classes.title}>Login</div>
+        <div className={classNew.loginWrap}>
+            <div className={classNew.alert}>If you can't access the site, use VPN</div>
+            <div className={classNew.loginWindow}>
+                <div className={classNew.title}>Login</div>
                 <LoginPage login={loginUserHandler}/>
             </div>
         </div>

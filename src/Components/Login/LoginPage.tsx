@@ -1,9 +1,15 @@
 import {Field, Form, Formik} from "formik";
 import React from "react";
-import classes from './LoginPage.module.css'
+import classNew from './LoginPage.module.css'
 
 const LoginPage: React.FC<PropsType> = ({login}) => {
 
+    const testFunction = () => {
+        return '1'
+    }
+    const testLoginHandler = () => {
+        login('kirill.mtvk@gmail.com', '112233445566', false, (testFunction) )
+    }
     return (
             <Formik
                 initialValues={{
@@ -18,29 +24,30 @@ const LoginPage: React.FC<PropsType> = ({login}) => {
             >
 
                 {({status, handleSubmit}) => (
-                    <Form onSubmit={handleSubmit} className={classes.loginForm}>
-                        <label htmlFor="email" className={status ? classes.error : classes.emailLabel}>Your email</label>
-                        <Field className={status ? classes.inputError : classes.emailInput}
+                    <Form onSubmit={handleSubmit} className={classNew.loginForm}>
+                        <label htmlFor="email" className={status ? classNew.error : classNew.emailLabel}>Your email</label>
+                        <Field className={status ? classNew.inputError : classNew.emailInput}
                                name="email"
                                type="email"
                                placeholder="Enter your email"
                         />
-                        <label htmlFor="password" className={status ? classes.error : classes.passwordLabel}>Password</label>
-                        <Field className={status ? classes.inputError : classes.loginPassword}
+                        <label htmlFor="password" className={status ? classNew.error : classNew.passwordLabel}>Password</label>
+                        <Field className={status ? classNew.inputError : classNew.loginPassword}
                                name="password"
                                type={"password"}
                                placeholder="Enter your password"
                         />
-                        <div className={classes.rememberMeBlock}>
+                        <div className={classNew.rememberMeBlock}>
                             <label>
-                                <Field className={classes.rememberMe}
+                                <Field className={classNew.rememberMe}
                                        name="rememberMe"
                                        type="checkbox"
                                 />
                                 Remember me</label>
                         </div>
-                        <div className={classes.errorStatus}>{status}</div>
-                        <button type="submit" className={classes.submitButton}>Sign In</button>
+                        <div className={classNew.errorStatus}>{status}</div>
+                        <button type="submit" className={classNew.submitButton}>Sign In</button>
+                        <button onClick={testLoginHandler} className={classNew.testLoginButton}>Test login</button>
                     </Form>
                 )}
 

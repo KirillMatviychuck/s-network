@@ -22,7 +22,7 @@ const MyPosts = React.memo((props: PropsForProfileType) => {
     return (
         <div>
             <div className={classNew.postsEditor}>
-                <h3>New Post</h3>
+                <h3 className={classNew.newPostTitle}>New Post</h3>
                 <div>
                     <textarea className={classNew.myPostsTextArea} value={props.profilePage.newPostText} onChange={onChangeHandler}>
 

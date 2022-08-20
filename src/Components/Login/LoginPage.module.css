@@ -100,3 +100,17 @@ input[type="password"] {
     height: 30px;
     width: 280px;
 }
+
+.testLoginButton {
+    font-family: Centaur, sans-serif;
+    color: white;
+    background-color: #353e49;
+    width: 120px;
+    height: 20px;
+    font-size: 0.8em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border: 1px solid #353e49;
+    border-radius: 100px;
+    cursor: pointer;
+}

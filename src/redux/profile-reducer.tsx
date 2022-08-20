@@ -4,8 +4,10 @@ import {AppThunk} from "../store/store-redux";
 
 let initialState: ProfileInitialStateType = {
     posts: [
-        {id: v1(), post: 'my first post', likesCount: 5},
-        {id: v1(), post: 'What interesting movie would you recommend me to watch?', likesCount: 17},
+        {id: v1(),
+            post: 'If you are logged in with a test account, you will not be able to change your status, ' +
+                'name, photo, etc. on the account, since all changes occur through the server, which requires a paid ' +
+                'subscription', likesCount: 17}
     ],
     newPostText: '',
     profile: null,

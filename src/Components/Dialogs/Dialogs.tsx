@@ -3,11 +3,10 @@ import classNew from './Dialogs.module.css'
 import DialogsUsers from "./DialogsUsers/DialogsUsers";
 import Messages from "./Messages/Messages";
 import {PropsForDialogsType} from "./DialogsContainer";
-import sendImage from '../../assets/button/send-pngrepo.png'
 
 
 const Dialogs: React.FC<PropsForDialogsType> = ({dialogsPage, onChangeChatArea, addMessage}) => {
-    let addNewUser = dialogsPage.users.map(t => <DialogsUsers key={t.id} id={t.id} name={t.name}/>)
+    let addNewUser = dialogsPage.users.map(t => <DialogsUsers key={t.id} id={t.id} name={t.name} image={t.urlLink}/>)
     let addNewMessage = dialogsPage.messages.map(t => <Messages key={t.id} id={t.id} message={t.message}/>)
 
     const changeChatTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => onChangeChatArea(e.currentTarget.value)

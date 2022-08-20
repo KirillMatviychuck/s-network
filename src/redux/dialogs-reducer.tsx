@@ -2,16 +2,17 @@ import {v1} from "uuid";
 
 const DialogsInitialState = {
         users: [
-            {id: v1(), name: 'Artem'},
-            {id: v1(), name: 'Andrew'},
-            {id: v1(), name: 'Olga'},
+            {id: v1(), name: 'Artem',
+                urlLink: 'https://pickaface.net/gallery/avatar/52575241_180411_1804_4lb.png'},
+            {id: v1(), name: 'Andrew',
+                urlLink: 'https://pickaface.net/gallery/avatar/TrueXPixels542b8838a55de.png'},
+            {id: v1(), name: 'Olga',
+                urlLink: 'https://i.pinimg.com/originals/d4/2c/2d/d42c2d5bec459a0c1422f143be2bf7a3.jpg'},
         ],
         messages: [
             {id: v1(), message: 'Hello how are you?'},
-            {id: v1(), message: 'I am fine, and how are you?'},
-            {id: v1(), message: 'me too, what are you doing now?'},
-            {id: v1(), message: 'watching a movie and you'},
-            {id: v1(), message: 'I am reading the book'},
+            {id: v1(), message: 'What are you doing now?'},
+            {id: v1(), message: 'Do you know any interesting movie to watch?'},
         ],
         newChatText: ''
 }

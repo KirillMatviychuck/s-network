@@ -29,6 +29,9 @@ const Users: React.FC<PropsForUsersType> = ({
                                                 follow,
                                                 isFetching
                                             }) => {
+    if (isFetching) {
+        return <Preloader />
+    }
 
     return (
         <div className={classes.wrapper}>

@@ -8,7 +8,7 @@ import {updateProfileInfoModelType} from "../../../../../api/api";
 const ProfileDataForm: React.FC<PropsType> = ({myId, updateProfileInfo, setEditMode}) => {
 
     const cancelButtonHandler = () => {
-
+        setEditMode(false)
     }
 
     return (

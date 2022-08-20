@@ -1,6 +1,7 @@
 import classNew from "./Post.module.css";
 import React from "react";
 import {ProfileInitialStateType} from "../../../../redux/profile-reducer";
+import defaultPicture from "../../../../assets/defaultUserPicture.jpg"
 
 
 type PostTypes = {
@@ -14,7 +15,7 @@ const Post = React.memo((props: PostTypes) => {
         <div className={classNew.item}>
             <div className={classNew.myPostImage}>
                 <img
-                    src={props.profilePage.profile?.photos?.small ? props.profilePage.profile?.photos?.small : ''}
+                    src={props.profilePage.profile?.photos?.small ? props.profilePage.profile?.photos?.small : defaultPicture}
                     alt="ava"/>
             </div>
             <div className={classNew.myPostMessage}>

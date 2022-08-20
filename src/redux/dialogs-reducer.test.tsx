@@ -5,7 +5,7 @@ import dialogsReducer, {addMessageAC, DialogsInitialStateType, newChatTextAC} fr
 test ('change text', () => {
     const startState: DialogsInitialStateType = {
         users: [
-            {id: v1(), name: 'Igor'}
+            {id: v1(), name: 'Igor', urlLink: ''}
         ],
         messages: [
             {id: v1(), message: 'Hello how are you?'},
@@ -21,7 +21,7 @@ test ('change text', () => {
 test ('change message', () => {
     const startState: DialogsInitialStateType = {
         users: [
-            {id: v1(), name: 'Igor'}
+            {id: v1(), name: 'Igor', urlLink: ''}
         ],
         messages: [
             {id: v1(), message: 'Hello how are you?'},
